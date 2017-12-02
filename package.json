@@ -22,7 +22,8 @@
     "extension": true
   },
   "dependencies": {
-    "@jupyterlab/application": "^0.12.0"
+    "@jupyterlab/application": "^0.12.0",
+    "@jupyterlab/notebook": "^0.12.0"
   },
   "devDependencies": {
     "rimraf": "^2.6.1",
