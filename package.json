@@ -25,6 +25,7 @@
     "@jupyterlab/application": "^0.13.0",
     "@jupyterlab/codemirror": "^0.13.0",
     "@jupyterlab/notebook": "^0.13.0",
+    "@phosphor/commands": "^1.4.0",
     "@types/codemirror": "^0.0.53"
   },
   "devDependencies": {
