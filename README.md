@@ -2,16 +2,14 @@
 
 Code cell vim bindings
 
+*WARNING* This package is very early in development and may eat all your data!
+If you are still interested in trying it out I welcome help and feedback.
+
+I've been using jupyterlab's [gitter](https://gitter.im/jupyterlab/jupyterlab) to solve issues.
 
 ## Prerequisites
 
 * JupyterLab
-
-## Installation
-
-```bash
-jupyter labextension install jupyterlab_vim
-```
 
 ## Development
 
@@ -28,3 +26,13 @@ To rebuild the package and the JupyterLab app:
 npm run build
 jupyter lab build
 ```
+
+## Installation
+
+No formal release has been shipped yet.
+You can try installing from git.
+
+```bash
+jupyter labextension install https://github.com/jwkvam/jupyterlab_vim
+```
+
