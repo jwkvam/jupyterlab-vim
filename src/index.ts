@@ -6,12 +6,16 @@ import {
 } from '@jupyterlab/application';
 
 import {
-  INotebookTracker
+  INotebookTracker, NotebookActions, NotebookPanel
 } from '@jupyterlab/notebook'
 
 import {
   CodeMirrorEditor
 } from '@jupyterlab/codemirror'
+
+import {
+  ReadonlyJSONObject
+} from '@phosphor/coreutils';
 
 // import {
 //   CommandRegistry
@@ -48,15 +52,13 @@ class VimCell {
         // debugger;
         let activeCell = this._tracker.activeCell;
         if (activeCell !== null) {
-            console.log(activeCell);
-            console.log('activating vimmers!!!');
+            // console.log(activeCell);
+            // console.log('activating vimmers!!!');
             let editor = activeCell.editor as CodeMirrorEditor;
             editor.setOption('keyMap', 'vim');
             let extraKeys = editor.getOption('extraKeys') || {};
 
             extraKeys['Esc'] = CodeMirror.prototype.leaveInsertMode;
-            extraKeys['Ctrl-j'] = CodeMirror.prototype.leaveInsertMode;
-            extraKeys['Ctrl-J'] = CodeMirror.prototype.leaveInsertMode;
             // extraKeys['Shift-Esc'] = CodeMirror.prototype.leaveNormalMode;
             extraKeys['Ctrl-C'] = CodeMirror.prototype.leaveInsertMode;
 
@@ -66,7 +68,7 @@ class VimCell {
             // console.log(shell);
             // debugger;
             
-            console.log(editor);
+            // console.log(editor);
         }
     }
 
@@ -75,25 +77,84 @@ class VimCell {
 }
 
 function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<void> {
-    console.log('activating vim!');
-
     Promise.all([app.restored]).then(([args]) => {
-        console.log('app started');
-        const {commands} = app;
-        console.log('number of commands');
-        console.log(commands.keyBindings.length);
-        console.log(commands);
+        const { commands, shell } = app;
+        function getCurrent(args: ReadonlyJSONObject): NotebookPanel | null {
+            const widget = tracker.currentWidget;
+            const activate = args['activate'] !== false;
 
-        // let idx = commands.keyBindings.findIndex(function (el) {
+            if (activate && widget) {
+                shell.activateById(widget.id);
+            }
+
+            return widget;
+        }
+        function isEnabled(): boolean {
+            return tracker.currentWidget !== null &&
+                tracker.currentWidget === app.shell.currentWidget;
+        }
+
+        // let idx = commands._keyBindings.findIndex(function (el: CommandRegistry.IKeyBindingOptions) {
         //     return (el.keys[0] == "Escape" && el.selector == ".jp-Notebook.jp-mod-editMode")
         // })
-        // commands.keyBindings.splice(idx, 1)
+        // commands._keyBindings.splice(idx, 1)
         
+        commands.addCommand('run-select-next-edit', {
+            label: 'Run Cell and Edit Next Cell',
+            execute: args => {
+                const current = getCurrent(args);
+
+                if (current) {
+                    const { context, notebook } = current;
+                    NotebookActions.runAndAdvance(notebook, context.session);
+                    current.notebook.mode = 'edit';
+                }
+            },
+            isEnabled
+        });
+        commands.addCommand('run-cell-and-edit', {
+            label: 'Run Cell and Edit Cell',
+            execute: args => {
+                const current = getCurrent(args);
+
+                if (current) {
+                    const { context, notebook } = current;
+                    NotebookActions.run(notebook, context.session);
+                    current.notebook.mode = 'edit';
+                }
+            },
+            isEnabled
+        });
         // debugger;
+
+
+
+
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-editMode',
+            keys: ['Ctrl J'],
+            command: 'notebook:move-cursor-down'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-editMode',
+            keys: ['Ctrl K'],
+            command: 'notebook:move-cursor-up'
+        });
         commands.addKeyBinding({
             selector: '.jp-Notebook.jp-mod-editMode',
             keys: ['Escape'],
-            command: 'notebook:enter-edit-mode'
+            command: CodeMirror.prototype.leaveInsertMode
+            // command: 'notebook:enter-edit-mode'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-editMode',
+            keys: ['Ctrl Enter'],
+            command: 'run-cell-and-edit'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-editMode',
+            keys: ['Shift Enter'],
+            command: 'run-select-next-edit'
         });
         commands.addKeyBinding({
             selector: '.jp-Notebook.jp-mod-editMode',
