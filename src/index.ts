@@ -243,11 +243,42 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
 
 
 
-        // commands.addKeyBinding({
-        //     selector: '.jp-Notebook.jp-mod-editMode',
-        //     keys: ['Ctrl O D D'],
-        //     command: 'notebook:delete-cell'
-        // });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-editMode',
+            keys: ['Ctrl O', 'D', 'D'],
+            command: 'notebook:delete-cell'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-editMode',
+            keys: ['Ctrl Shift J'],
+            command: 'notebook:extend-marked-cells-below'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-commandMode',
+            keys: ['Ctrl Shift J'],
+            command: 'notebook:extend-marked-cells-below'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-editMode',
+            keys: ['Ctrl Shift K'],
+            command: 'notebook:extend-marked-cells-above'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-commandMode',
+            keys: ['Ctrl Shift K'],
+            command: 'notebook:extend-marked-cells-above'
+        });
+        // this one doesn't work yet
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-editMode',
+            keys: ['Ctrl O', 'Shift O'],
+            command: 'notebook:insert-cell-above'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-editMode',
+            keys: ['Ctrl O', 'O'],
+            command: 'notebook:insert-cell-below'
+        });
         commands.addKeyBinding({
             selector: '.jp-Notebook.jp-mod-editMode',
             keys: ['Ctrl J'],
