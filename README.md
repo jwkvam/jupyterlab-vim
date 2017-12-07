@@ -7,6 +7,11 @@ If you are still interested in trying it out I welcome help and feedback.
 
 I've been using jupyterlab's [gitter](https://gitter.im/jupyterlab/jupyterlab) to solve issues.
 
+## Special Thanks
+
+I want to acknowledge [Alisue](https://github.com/lambdalisue) and his excellent work creating [vim bindings](https://github.com/lambdalisue/jupyter-vim-binding) for Jupyter notebooks.
+I hope this extension can meet the high bar his work set.
+
 ## Prerequisites
 
 * JupyterLab
