@@ -222,31 +222,38 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
                 const current = getCurrent(args);
 
                 if (current) {
-                    // const cm = CodeMirror;
-                    // console.log(cm);
                     const { notebook } = current;
                     let editor = notebook.activeCell.editor as CodeMirrorEditor;
                     (CodeMirror as any).Vim.handleKey(editor.editor, '<Esc>')
-                    // console.log(editor);
-                    // console.log(cm)
-                    // console.log(context);
-                    // console.log(notebook);
-                    // debugger;
-                    // NotebookActions.run(notebook, context.session);
-                    // current.notebook.mode = 'edit';
                 }
             },
             isEnabled
         });
-        // debugger;
-
-
-
 
         commands.addKeyBinding({
             selector: '.jp-Notebook.jp-mod-editMode',
-            keys: ['Ctrl O', 'D', 'D'],
-            command: 'notebook:delete-cell'
+            keys: ['Ctrl O', 'U'],
+            command: 'notebook:undo-cell-action'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-editMode',
+            keys: ['Ctrl O', '-'],
+            command: 'notebook:split-cell-at-cursor'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-editMode',
+            keys: ['Ctrl O', 'D'],
+            command: 'notebook:cut-cell'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-editMode',
+            keys: ['Ctrl O', 'Y'],
+            command: 'notebook:copy-cell'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-editMode',
+            keys: ['Ctrl O', 'P'],
+            command: 'notebook:paste-cell'
         });
         commands.addKeyBinding({
             selector: '.jp-Notebook.jp-mod-editMode',
