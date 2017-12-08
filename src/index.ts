@@ -222,6 +222,58 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
             },
             isEnabled
         });
+        commands.addCommand('cut-cell-and-edit', {
+            label: 'Cut Cell(s) and Edit Cell',
+            execute: args => {
+                const current = getCurrent(args);
+
+                if (current) {
+                    const { notebook } = current;
+                    NotebookActions.cut(notebook);
+                    notebook.mode = 'edit';
+                }
+            },
+            isEnabled
+        });
+        commands.addCommand('copy-cell-and-edit', {
+            label: 'Copy Cell(s) and Edit Cell',
+            execute: args => {
+                const current = getCurrent(args);
+
+                if (current) {
+                    const { notebook } = current;
+                    NotebookActions.copy(notebook);
+                    notebook.mode = 'edit';
+                }
+            },
+            isEnabled
+        });
+        commands.addCommand('paste-cell-and-edit', {
+            label: 'Paste Cell(s) and Edit Cell',
+            execute: args => {
+                const current = getCurrent(args);
+
+                if (current) {
+                    const { notebook } = current;
+                    NotebookActions.paste(notebook);
+                    notebook.mode = 'edit';
+                }
+            },
+            isEnabled
+        });
+        commands.addCommand('merge-and-edit', {
+            label: 'Merge and Edit Cell',
+            execute: args => {
+                const current = getCurrent(args);
+
+                if (current) {
+                    const { notebook } = current;
+                    NotebookActions.mergeCells(notebook);
+                    notebook.mode = 'edit';
+                }
+            },
+            isEnabled
+        });
         commands.addCommand('leave-insert-mode', {
             label: 'Leave Insert Mode',
             execute: args => {
@@ -249,17 +301,17 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
         commands.addKeyBinding({
             selector: '.jp-Notebook.jp-mod-editMode',
             keys: ['Ctrl O', 'D'],
-            command: 'notebook:cut-cell'
+            command: 'cut-cell-and-edit'
         });
         commands.addKeyBinding({
             selector: '.jp-Notebook.jp-mod-editMode',
             keys: ['Ctrl O', 'Y'],
-            command: 'notebook:copy-cell'
+            command: 'copy-cell-and-edit'
         });
         commands.addKeyBinding({
             selector: '.jp-Notebook.jp-mod-editMode',
             keys: ['Ctrl O', 'P'],
-            command: 'notebook:paste-cell'
+            command: 'paste-cell-and-edit'
         });
         commands.addKeyBinding({
             selector: '.jp-Notebook.jp-mod-editMode',
@@ -285,6 +337,11 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
         commands.addKeyBinding({
             selector: '.jp-Notebook.jp-mod-editMode',
             keys: ['Ctrl O', 'Shift O'],
+            command: 'notebook:insert-cell-above'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-editMode',
+            keys: ['Ctrl O', 'Ctrl O'],
             command: 'notebook:insert-cell-above'
         });
         commands.addKeyBinding({
@@ -321,6 +378,11 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
             selector: '.jp-Notebook.jp-mod-editMode',
             keys: ['Shift Escape'],
             command: 'notebook:enter-command-mode'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-commandMode',
+            keys: ['Shift M'],
+            command: 'merge-and-edit'
         });
 
         const vimcell = new VimCell(app, tracker);
