@@ -12,6 +12,22 @@ I've been using jupyterlab's [gitter](https://gitter.im/jupyterlab/jupyterlab) t
 I want to acknowledge [Alisue](https://github.com/lambdalisue) and his excellent work creating [vim bindings](https://github.com/lambdalisue/jupyter-vim-binding) for Jupyter notebooks.
 I hope this extension can meet the high bar his work set.
 
+## Key Bindings
+
+| Chord        | Command                   |
+| -----        | -------                   |
+| Ctrl-O, U    | Undo Cell Action          |
+| Ctrl-O, -    | Split Cell at Cursor      |
+| Ctrl-O, D    | Cut Cell                  |
+| Ctrl-O, Y    | Copy Cell                 |
+| Ctrl-O, P    | Paste Cell                |
+| Ctrl-Shift-J | Extend Marked Cells Below |
+| Ctrl-Shift-K | Extend Marked Cells Above |
+| Ctrl-O, O    | Insert Cell Below         |
+| Ctrl-J       | Select Cell Below         |
+| Ctrl-K       | Select Cell Above         |
+| Shift-Escape | Leave Vim Mode            |
+
 ## Prerequisites
 
 * JupyterLab
