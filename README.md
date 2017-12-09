@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/jupyterlab_vim.svg)](https://www.npmjs.com/package/jupyterlab_vim)
 
-Code cell vim bindings
+Notebook cell vim bindings
 
 *WARNING* This package is very early in development and may eat all your data!
 If you are still interested in trying it out I welcome help and feedback.
