@@ -1,5 +1,7 @@
 # jupyterlab_vim
 
+[![npm version](https://badge.fury.io/js/jupyterlab_vim.svg)](https://www.npmjs.com/package/jupyterlab_vim)
+
 Code cell vim bindings
 
 *WARNING* This package is very early in development and may eat all your data!
@@ -32,6 +34,12 @@ I hope this extension can meet the high bar his work set.
 
 * JupyterLab
 
+## Installation
+
+```bash
+jupyter labextension install jupyterlab_vim
+```
+
 ## Development
 
 For a development install (requires npm version 4 or later), do the following in the repository directory:
@@ -47,13 +55,3 @@ To rebuild the package and the JupyterLab app:
 npm run build
 jupyter lab build
 ```
-
-## Installation
-
-No formal release has been shipped yet.
-You can try installing from git.
-
-```bash
-jupyter labextension install https://github.com/jwkvam/jupyterlab_vim
-```
-
