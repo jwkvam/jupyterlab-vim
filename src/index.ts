@@ -20,12 +20,7 @@ import {
     ReadonlyJSONObject
 } from '@phosphor/coreutils';
 
-// import {
-//   CommandRegistry
-// } from '@phosphor/commands';
-
 import '../style/index.css';
-
 
 /**
  * Initialization data for the jupyterlab_vim extension.
@@ -56,7 +51,6 @@ class VimCell {
             let extraKeys = editor.getOption('extraKeys') || {};
 
             extraKeys['Esc'] = CodeMirror.prototype.leaveInsertMode;
-            // extraKeys['Shift-Esc'] = CodeMirror.prototype.leaveNormalMode;
             extraKeys['Ctrl-C'] = CodeMirror.prototype.leaveInsertMode;
 
             editor.setOption('extraKeys', extraKeys);
@@ -162,7 +156,6 @@ class VimCell {
 function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<void> {
 
     Promise.all([app.restored]).then(([args]) => {
-        // console.log('app started');
         const { commands, shell } = app;
         function getCurrent(args: ReadonlyJSONObject): NotebookPanel | null {
             const widget = tracker.currentWidget;
@@ -178,24 +171,6 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
             return tracker.currentWidget !== null &&
                 tracker.currentWidget === app.shell.currentWidget;
         }
-        // console.log('number of commands');
-        // console.log(commands.keyBindings.length);
-        // console.log(commands);
-
-        // let idx = commands._keyBindings.findIndex(function (el: CommandRegistry.IKeyBindingOptions) {
-        //     return (el.keys[0] == "Escape" && el.selector == ".jp-Notebook.jp-mod-editMode")
-        // })
-        // commands._keyBindings.splice(idx, 1)
-        
-        // (CodeMirror as any).Vim.defineMotion('moveByLinesOrCell', (cm: any, head: any, motionArgs: any, vim: any) => {
-
-        // ((CodeMirror as any).Vim as any).defineMotion('moveByLinesOrCell', moveByLinesOrCell)
-        //
-        // (CodeMirror as any).Vim.mapCommand(
-        //     "<Plug>(vim-binding-k)", "motion", "moveByLinesOrCell",
-        //     { forward: false, linewise: true },
-        //     { context: "normal" }
-        // )
         
         commands.addCommand('run-select-next-edit', {
             label: 'Run Cell and Edit Next Cell',
@@ -386,18 +361,7 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
             command: 'merge-and-edit'
         });
 
-        const vimcell = new VimCell(app, tracker);
-        console.log(vimcell);
-        // commands.addCommand('vim-command-mode', {
-        //     label: 'Edit Mode',
-        //     // execute: () => { nbWidget.notebook.mode = 'edit'; }
-        //     execute: () => { CodeMirror.prototype.leaveInsertMode; }
-        // });
-        // commands.addKeyBinding({
-        //     selector: '.jp-Notebook.jp-mod-editMode',
-        //     keys: ['Escape'],
-        //     command: 'vim-command-mode'
-        // })
+        new VimCell(app, tracker);
     });
 
   return Promise.resolve();
