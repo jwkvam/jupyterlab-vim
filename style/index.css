@@ -1,0 +1,49 @@
+/* Improve command area of CodeMirror Vim */
+@import url('~codemirror/lib/codemirror.css');
+@import url('~codemirror/addon/dialog/dialog.css');
+
+@import url('~codemirror/theme/material.css');
+@import url('~codemirror/theme/zenburn.css');
+@import url('~codemirror/theme/abcdef.css');
+@import url('~codemirror/theme/base16-light.css');
+@import url('~codemirror/theme/base16-dark.css');
+@import url('~codemirror/theme/dracula.css');
+@import url('~codemirror/theme/hopscotch.css');
+@import url('~codemirror/theme/mbo.css');
+@import url('~codemirror/theme/mdn-like.css');
+@import url('~codemirror/theme/seti.css');
+@import url('~codemirror/theme/the-matrix.css');
+@import url('~codemirror/theme/xq-light.css');
+
+.CodeMirror-dialog-bottom {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  z-index: 100;
+  color: #eee;
+  background-color: #333;
+}
+
+.CodeMirror-dialog-bottom input {
+  border: none;
+  outline: none;
+  color: inherit;
+  background-color: inherit;
+  width: calc(100% - 1em);
+}
+
+/* Jupyter cell is in normal mode when code mirror */
+.edit_mode .cell.selected .CodeMirror-focused.cm-fat-cursor {
+  background-color: #cccccc;
+}
+  /* background-color: #F5F6EB; */
+
+/* Jupyter cell is in insert mode when code mirror */
+.edit_mode .cell.selected .CodeMirror-focused:not(.cm-fat-cursor) {
+  background-color: #cccccc;
+}
+  /* background-color: #F6EBF1; */
+/* Hide dialogs in inline editors due to poor UX with small editors. */
+.jp-CodeMirrorEditor[data-type="inline"] .CodeMirror-dialog {
+  display: inline;
+}

@@ -1,4 +1,7 @@
 import * as CodeMirror from 'codemirror';
+import 'codemirror/addon/search/searchcursor';
+import 'codemirror/addon/search/search';
+import 'codemirror/addon/dialog/dialog';
 
 import {
     JupyterLab, JupyterLabPlugin
@@ -147,6 +150,9 @@ class VimCell {
                 { forward: true, linewise: true },
                 { context: "normal" }
             )
+            // lvim.mapCommand(
+            //     '/', 'search', { forward: true, querySrc: 'prompt' }
+            // )
         }
     }
 
