@@ -37,6 +37,7 @@ class VimCell {
     constructor(app: JupyterLab, tracker: INotebookTracker) {
         this._tracker = tracker;
         this._app = app;
+        this._onActiveCellChanged();
         this._tracker.activeCellChanged.connect(this._onActiveCellChanged, this);
     }
 
@@ -55,7 +56,7 @@ class VimCell {
 
             editor.setOption('extraKeys', extraKeys);
             const {commands} = this._app;
-            
+
             let lcm = CodeMirror as any;
             let lvim = lcm.Vim as any;
             (CodeMirror as any).Vim.handleKey(editor.editor, '<Esc>')
@@ -171,7 +172,7 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
             return tracker.currentWidget !== null &&
                 tracker.currentWidget === app.shell.currentWidget;
         }
-        
+
         commands.addCommand('run-select-next-edit', {
             label: 'Run Cell and Edit Next Cell',
             execute: args => {
