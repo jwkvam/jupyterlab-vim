@@ -268,54 +268,6 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
             },
             isEnabled
         });
-        commands.addCommand('split-cell-edit', {
-            label: 'Split Cell and Edit',
-            execute: args => {
-                const current = getCurrent(args);
-
-                if (current) {
-                    NotebookActions.splitCell(current.notebook);
-                    current.notebook.mode = 'edit';
-                }
-            },
-            isEnabled
-        });
-        commands.addCommand('undo-cell-edit', {
-            label: 'Undo Cell Action and Edit',
-            execute: args => {
-                const current = getCurrent(args);
-
-                if (current) {
-                    NotebookActions.undo(current.notebook);
-                    current.notebook.mode = 'edit';
-                }
-            },
-            isEnabled
-        });
-        commands.addCommand('insert-above-edit', {
-            label: 'Insert Cell Above and Edit',
-            execute: args => {
-                const current = getCurrent(args);
-
-                if (current) {
-                    NotebookActions.insertAbove(current.notebook);
-                    current.notebook.mode = 'edit';
-                }
-            },
-            isEnabled
-        });
-        commands.addCommand('insert-below-edit', {
-            label: 'Insert Cell Below and Edit',
-            execute: args => {
-                const current = getCurrent(args);
-
-                if (current) {
-                    NotebookActions.insertBelow(current.notebook);
-                    current.notebook.mode = 'edit';
-                }
-            },
-            isEnabled
-        });
 
         commands.addKeyBinding({
             selector: '.jp-Notebook.jp-mod-editMode',
