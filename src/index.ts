@@ -47,6 +47,7 @@ class VimCell {
         // }
         let activeCell = this._tracker.activeCell;
         if (activeCell !== null) {
+            const {commands} = this._app;
             let editor = activeCell.editor as CodeMirrorEditor;
             editor.setOption('keyMap', 'vim');
             let extraKeys = editor.getOption('extraKeys') || {};
@@ -54,8 +55,11 @@ class VimCell {
             extraKeys['Esc'] = CodeMirror.prototype.leaveInsertMode;
             extraKeys['Ctrl-C'] = CodeMirror.prototype.leaveInsertMode;
 
+            CodeMirror.prototype.save = () => {
+                commands.execute('docmanager:save');
+            };
+
             editor.setOption('extraKeys', extraKeys);
-            const {commands} = this._app;
 
             let lcm = CodeMirror as any;
             let lvim = lcm.Vim as any;
@@ -102,11 +106,11 @@ class VimCell {
                     }
                     if (motionArgs.forward) {
                         // ns.notebook.select_next();
-                        commands.execute('select-below-edit');
+                        commands.execute('notebook:move-cursor-down');
                         // key = 'j';
                     } else {
                         // ns.notebook.select_prev();
-                        commands.execute('select-above-edit');
+                        commands.execute('notebook:move-cursor-up');
                         // key = 'k';
                     }
                     // ns.notebook.edit_mode();
@@ -173,30 +177,6 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
                 tracker.currentWidget === app.shell.currentWidget;
         }
 
-        commands.addCommand('select-above-edit', {
-            label: 'Select Above and Edit',
-            execute: args => {
-                const current = getCurrent(args);
-
-                if (current) {
-                    NotebookActions.selectAbove(current.notebook);
-                    current.notebook.mode = 'edit';
-                }
-            },
-            isEnabled
-        });
-        commands.addCommand('select-below-edit', {
-            label: 'Select Below and Edit',
-            execute: args => {
-                const current = getCurrent(args);
-
-                if (current) {
-                    NotebookActions.selectBelow(current.notebook);
-                    current.notebook.mode = 'edit';
-                }
-            },
-            isEnabled
-        });
         commands.addCommand('run-select-next-edit', {
             label: 'Run Cell and Edit Next Cell',
             execute: args => {
@@ -218,19 +198,6 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
                 if (current) {
                     const { context, notebook } = current;
                     NotebookActions.run(notebook, context.session);
-                    current.notebook.mode = 'edit';
-                }
-            },
-            isEnabled
-        });
-        commands.addCommand('run-cell-and-insert-edit', {
-            label: 'Run Cell and Insert Edit Cell',
-            execute: args => {
-                const current = getCurrent(args);
-
-                if (current) {
-                    const { context, notebook } = current;
-                    NotebookActions.runAndInsert(notebook, context.session);
                     current.notebook.mode = 'edit';
                 }
             },
@@ -301,64 +268,16 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
             },
             isEnabled
         });
-        commands.addCommand('split-cell-edit', {
-            label: 'Split Cell and Edit',
-            execute: args => {
-                const current = getCurrent(args);
-
-                if (current) {
-                    NotebookActions.splitCell(current.notebook);
-                    current.notebook.mode = 'edit';
-                }
-            },
-            isEnabled
-        });
-        commands.addCommand('undo-cell-edit', {
-            label: 'Undo Cell Action and Edit',
-            execute: args => {
-                const current = getCurrent(args);
-
-                if (current) {
-                    NotebookActions.undo(current.notebook);
-                    current.notebook.mode = 'edit';
-                }
-            },
-            isEnabled
-        });
-        commands.addCommand('insert-above-edit', {
-            label: 'Insert Cell Above and Edit',
-            execute: args => {
-                const current = getCurrent(args);
-
-                if (current) {
-                    NotebookActions.insertAbove(current.notebook);
-                    current.notebook.mode = 'edit';
-                }
-            },
-            isEnabled
-        });
-        commands.addCommand('insert-below-edit', {
-            label: 'Insert Cell Below and Edit',
-            execute: args => {
-                const current = getCurrent(args);
-
-                if (current) {
-                    NotebookActions.insertBelow(current.notebook);
-                    current.notebook.mode = 'edit';
-                }
-            },
-            isEnabled
-        });
 
         commands.addKeyBinding({
             selector: '.jp-Notebook.jp-mod-editMode',
             keys: ['Ctrl O', 'U'],
-            command: 'undo-cell-edit'
+            command: 'notebook:undo-cell-action'
         });
         commands.addKeyBinding({
             selector: '.jp-Notebook.jp-mod-editMode',
             keys: ['Ctrl O', '-'],
-            command: 'split-cell-edit'
+            command: 'notebook:split-cell-at-cursor'
         });
         commands.addKeyBinding({
             selector: '.jp-Notebook.jp-mod-editMode',
@@ -399,27 +318,27 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
         commands.addKeyBinding({
             selector: '.jp-Notebook.jp-mod-editMode',
             keys: ['Ctrl O', 'Shift O'],
-            command: 'insert-above-edit'
+            command: 'notebook:insert-cell-above'
         });
         commands.addKeyBinding({
             selector: '.jp-Notebook.jp-mod-editMode',
             keys: ['Ctrl O', 'Ctrl O'],
-            command: 'insert-above-edit'
+            command: 'notebook:insert-cell-above'
         });
         commands.addKeyBinding({
             selector: '.jp-Notebook.jp-mod-editMode',
             keys: ['Ctrl O', 'O'],
-            command: 'insert-below-edit'
+            command: 'notebook:insert-cell-below'
         });
         commands.addKeyBinding({
             selector: '.jp-Notebook.jp-mod-editMode',
             keys: ['Ctrl J'],
-            command: 'select-below-edit'
+            command: 'notebook:move-cursor-down'
         });
         commands.addKeyBinding({
             selector: '.jp-Notebook.jp-mod-editMode',
             keys: ['Ctrl K'],
-            command: 'select-above-edit'
+            command: 'notebook:move-cursor-up'
         });
         commands.addKeyBinding({
             selector: '.jp-Notebook.jp-mod-editMode',
@@ -435,11 +354,6 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
             selector: '.jp-Notebook.jp-mod-editMode',
             keys: ['Shift Enter'],
             command: 'run-select-next-edit'
-        });
-        commands.addKeyBinding({
-            selector: '.jp-Notebook.jp-mod-editMode',
-            keys: ['Alt Enter'],
-            command: 'run-cell-and-insert-edit'
         });
         commands.addKeyBinding({
             selector: '.jp-Notebook.jp-mod-editMode',
