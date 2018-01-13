@@ -1,7 +1,6 @@
 # History
 
 ## 0.2.0 / 2018-01-12
-==================
 
   * Update to JupyterLab 0.31 (Beta1)
 
