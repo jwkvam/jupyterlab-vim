@@ -6,15 +6,15 @@ import {
 
 import {
     INotebookTracker, NotebookActions, NotebookPanel
-} from '@jupyterlab/notebook'
+} from '@jupyterlab/notebook';
 
 import {
     MarkdownCell
-} from '@jupyterlab/cells'
+} from '@jupyterlab/cells';
 
 import {
     CodeMirrorEditor
-} from '@jupyterlab/codemirror'
+} from '@jupyterlab/codemirror';
 
 import {
     ReadonlyJSONObject
@@ -59,11 +59,11 @@ class VimCell {
 
             let lcm = CodeMirror as any;
             let lvim = lcm.Vim as any;
-            (CodeMirror as any).Vim.handleKey(editor.editor, '<Esc>')
+            (CodeMirror as any).Vim.handleKey(editor.editor, '<Esc>');
             lvim.defineMotion('moveByLinesOrCell', (cm: any, head: any, motionArgs: any, vim: any) => {
                 let cur = head;
                 let endCh = cur.ch;
-                let current_cell = activeCell;
+                let currentCell = activeCell;
                 // TODO: these references will be undefined
                 // Depending what our last motion was, we may want to do different
                 // things. If our last motion was moving vertically, we want to
@@ -92,26 +92,26 @@ class VimCell {
 
                 // JUPYTER PATCH BEGIN
                 // here we insert the jumps to the next cells
-                if(line < first || line > last){
-                    // var current_cell = ns.notebook.get_selected_cell();
-                    // var current_cell = tracker.activeCell;
+                if (line < first || line > last) {
+                    // var currentCell = ns.notebook.get_selected_cell();
+                    // var currentCell = tracker.activeCell;
                     // var key = '';
-                    if (current_cell.model.type == 'markdown') {
-                        (current_cell as MarkdownCell).rendered = true;
-                        // current_cell.execute();
+                    if (currentCell.model.type === 'markdown') {
+                        (currentCell as MarkdownCell).rendered = true;
+                        // currentCell.execute();
                     }
                     if (motionArgs.forward) {
                         // ns.notebook.select_next();
-                        commands.execute('select-below-edit')
+                        commands.execute('select-below-edit');
                         // key = 'j';
                     } else {
                         // ns.notebook.select_prev();
-                        commands.execute('select-above-edit')
+                        commands.execute('select-above-edit');
                         // key = 'k';
                     }
                     // ns.notebook.edit_mode();
                     // var new_cell = ns.notebook.get_selected_cell();
-                    // if (current_cell !== new_cell && !!new_cell) {
+                    // if (currentCell !== new_cell && !!new_cell) {
                     //     // The selected cell has moved. Move the cursor at very end
                     //     var cm2 = new_cell.code_mirror;
                     //     cm2.setCursor({
@@ -140,13 +140,13 @@ class VimCell {
             lvim.mapCommand(
                 'k', 'motion', 'moveByLinesOrCell',
                 { forward: false, linewise: true },
-                { context: "normal" }
-            )
+                { context: 'normal' }
+            );
             lvim.mapCommand(
                 'j', 'motion', 'moveByLinesOrCell',
                 { forward: true, linewise: true },
-                { context: "normal" }
-            )
+                { context: 'normal' }
+            );
         }
     }
 
@@ -296,7 +296,7 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
                 if (current) {
                     const { notebook } = current;
                     let editor = notebook.activeCell.editor as CodeMirrorEditor;
-                    (CodeMirror as any).Vim.handleKey(editor.editor, '<Esc>')
+                    (CodeMirror as any).Vim.handleKey(editor.editor, '<Esc>');
                 }
             },
             isEnabled
@@ -308,7 +308,7 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
 
                 if (current) {
                     NotebookActions.splitCell(current.notebook);
-                    current.notebook.mode ='edit';
+                    current.notebook.mode = 'edit';
                 }
             },
             isEnabled
@@ -320,7 +320,7 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
 
                 if (current) {
                     NotebookActions.undo(current.notebook);
-                    current.notebook.mode ='edit';
+                    current.notebook.mode = 'edit';
                 }
             },
             isEnabled
@@ -332,7 +332,7 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
 
                 if (current) {
                     NotebookActions.insertAbove(current.notebook);
-                    current.notebook.mode ='edit';
+                    current.notebook.mode = 'edit';
                 }
             },
             isEnabled
@@ -344,7 +344,7 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
 
                 if (current) {
                     NotebookActions.insertBelow(current.notebook);
-                    current.notebook.mode ='edit';
+                    current.notebook.mode = 'edit';
                 }
             },
             isEnabled
@@ -452,10 +452,11 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
             command: 'merge-and-edit'
         });
 
+        // tslint:disable:no-unused-expression
         new VimCell(app, tracker);
     });
 
-  return Promise.resolve();
+    return Promise.resolve();
 }
 
 export default extension;
