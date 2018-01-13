@@ -57,7 +57,7 @@ class VimCell {
 
             CodeMirror.prototype.save = () => {
                 commands.execute('docmanager:save');
-            }
+            };
 
             editor.setOption('extraKeys', extraKeys);
 
