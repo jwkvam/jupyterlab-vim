@@ -47,6 +47,7 @@ class VimCell {
         // }
         let activeCell = this._tracker.activeCell;
         if (activeCell !== null) {
+            const {commands} = this._app;
             let editor = activeCell.editor as CodeMirrorEditor;
             editor.setOption('keyMap', 'vim');
             let extraKeys = editor.getOption('extraKeys') || {};
@@ -54,8 +55,11 @@ class VimCell {
             extraKeys['Esc'] = CodeMirror.prototype.leaveInsertMode;
             extraKeys['Ctrl-C'] = CodeMirror.prototype.leaveInsertMode;
 
+            CodeMirror.prototype.save = () => {
+                commands.execute('docmanager:save');
+            }
+
             editor.setOption('extraKeys', extraKeys);
-            const {commands} = this._app;
 
             let lcm = CodeMirror as any;
             let lvim = lcm.Vim as any;
