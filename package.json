@@ -1,10 +1,21 @@
 {
   "name": "jupyterlab_vim",
-  "version": "0.1.1-dev",
+  "version": "0.2.0",
   "description": "Code cell vim bindings",
   "author": "Jacques Kvam",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "license": "MIT",
+  "homepage": "https://github.com/jwkvam/jupyterlab_vim",
+  "bugs": {
+    "url": "https://github.com/jwkvam/jupyterlab_vim/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jwkvam/jupyterlab_vim.git"
+  },
   "keywords": [
+    "extension",
     "jupyter",
     "jupyterlab"
   ],
@@ -22,14 +33,15 @@
     "extension": true
   },
   "dependencies": {
-    "@jupyterlab/application": "^0.13.0",
-    "@jupyterlab/codemirror": "^0.13.0",
-    "@jupyterlab/notebook": "^0.13.0",
+    "@jupyterlab/application": "^0.15.0",
+    "@jupyterlab/codemirror": "^0.15.0",
+    "@jupyterlab/cells": "^0.15.0",
+    "@jupyterlab/notebook": "^0.15.0",
     "@phosphor/commands": "^1.4.0",
-    "@types/codemirror": "^0.0.53"
+    "@types/codemirror": "^0.0.55"
   },
   "devDependencies": {
-    "rimraf": "^2.6.1",
-    "typescript": "~2.4.0"
+    "rimraf": "^2.6.2",
+    "typescript": "~2.6.2"
   }
 }
