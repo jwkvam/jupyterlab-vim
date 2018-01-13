@@ -1,5 +1,10 @@
 # History
 
+## 0.2.1 / 2018-01-13
+
+  * bump package requirements, revert unnecessary commands for staying in edit mode
+  * ":w" saves notebook
+
 ## 0.2.0 / 2018-01-12
 
   * Update to JupyterLab 0.31 (Beta1)
