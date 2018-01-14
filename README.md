@@ -35,10 +35,16 @@ I hope this extension can meet the high bar his work set.
 
 * JupyterLab
 
-## Installation
+## Install
 
 ```bash
 jupyter labextension install jupyterlab_vim
+```
+
+## Uninstall
+
+```bash
+jupyter labextension uninstall jupyterlab_vim
 ```
 
 ## Development
