@@ -63,6 +63,10 @@ class VimCell {
 
             let lcm = CodeMirror as any;
             let lvim = lcm.Vim as any;
+            lvim.defineEx('quit', 'q', function(cm: any) {
+                commands.execute('notebook:enter-command-mode');
+            });
+
             (CodeMirror as any).Vim.handleKey(editor.editor, '<Esc>');
             lvim.defineMotion('moveByLinesOrCell', (cm: any, head: any, motionArgs: any, vim: any) => {
                 let cur = head;

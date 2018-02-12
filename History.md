@@ -1,5 +1,9 @@
 # History
 
+## 0.3.0 / 2018-02-12
+
+  * Ex commands ':q' and ':quit' leave vim mode
+
 ## 0.2.1 / 2018-01-13
 
   * bump package requirements, revert unnecessary commands for staying in edit mode
