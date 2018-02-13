@@ -17,19 +17,22 @@ I hope this extension can meet the high bar his work set.
 
 ## Key Bindings
 
-| Chord        | Command                   |
-| -----        | -------                   |
-| Ctrl-O, U    | Undo Cell Action          |
-| Ctrl-O, -    | Split Cell at Cursor      |
-| Ctrl-O, D    | Cut Cell                  |
-| Ctrl-O, Y    | Copy Cell                 |
-| Ctrl-O, P    | Paste Cell                |
-| Ctrl-Shift-J | Extend Marked Cells Below |
-| Ctrl-Shift-K | Extend Marked Cells Above |
-| Ctrl-O, O    | Insert Cell Below         |
-| Ctrl-J       | Select Cell Below         |
-| Ctrl-K       | Select Cell Above         |
-| Shift-Escape | Leave Vim Mode            |
+| Chord          | Command                   |
+| -----          | -------                   |
+| Ctrl-O, U      | Undo Cell Action          |
+| Ctrl-O, -      | Split Cell at Cursor      |
+| Ctrl-O, D      | Cut Cell                  |
+| Ctrl-O, Y      | Copy Cell                 |
+| Ctrl-O, P      | Paste Cell                |
+| Ctrl-Shift-J   | Extend Marked Cells Below |
+| Ctrl-Shift-K   | Extend Marked Cells Above |
+| Ctrl-O, O      | Insert Cell Below         |
+| Ctrl-J         | Select Cell Below         |
+| Ctrl-K         | Select Cell Above         |
+| Command/Ctrl-1 | Code Cell Mode            |
+| Command/Ctrl-2 | Markdown Cell Mode        |
+| Command/Ctrl-3 | Raw Cell Mode             |
+| Shift-Escape   | Leave Vim Mode            |
 
 ## Prerequisites
 
