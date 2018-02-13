@@ -369,6 +369,21 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
             keys: ['Shift M'],
             command: 'merge-and-edit'
         });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-editMode',
+            keys: ['Accel 1'],
+            command: 'notebook:change-cell-to-code'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-editMode',
+            keys: ['Accel 2'],
+            command: 'notebook:change-cell-to-markdown'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-editMode',
+            keys: ['Accel 3'],
+            command: 'notebook:change-cell-to-raw'
+        });
 
         // tslint:disable:no-unused-expression
         new VimCell(app, tracker);

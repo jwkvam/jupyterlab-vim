@@ -1,5 +1,9 @@
 # History
 
+## 0.4.0 / 2018-02-13
+
+  * Added Command/Ctrl-{1,2,3} to switch cell mode to code, markdown and raw.
+
 ## 0.3.0 / 2018-02-12
 
   * Ex commands ':q' and ':quit' leave vim mode
