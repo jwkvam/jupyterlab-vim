@@ -1,5 +1,9 @@
 # History
 
+## 0.4.1 / 2018-02-14
+
+  * Ctrl-J and Ctrl-K execute markdown when leaving the cell.
+
 ## 0.4.0 / 2018-02-13
 
   * Added Command/Ctrl-{1,2,3} to switch cell mode to code, markdown and raw.

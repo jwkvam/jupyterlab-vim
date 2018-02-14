@@ -272,6 +272,34 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
             },
             isEnabled
         });
+        commands.addCommand('select-below-execute-markdown', {
+            label: 'Execute Markdown and Select Cell Below',
+            execute: args => {
+                const current = getCurrent(args);
+
+                if (current) {
+                    if (current.notebook.activeCell.model.type === 'markdown') {
+                        (current.notebook.activeCell as MarkdownCell).rendered = true;
+                    }
+                    return NotebookActions.selectBelow(current.notebook);
+                }
+            },
+            isEnabled
+        });
+        commands.addCommand('select-above-execute-markdown', {
+            label: 'Execute Markdown and Select Cell Below',
+            execute: args => {
+                const current = getCurrent(args);
+
+                if (current) {
+                    if (current.notebook.activeCell.model.type === 'markdown') {
+                        (current.notebook.activeCell as MarkdownCell).rendered = true;
+                    }
+                    return NotebookActions.selectAbove(current.notebook);
+                }
+            },
+            isEnabled
+        });
 
         commands.addKeyBinding({
             selector: '.jp-Notebook.jp-mod-editMode',
@@ -337,12 +365,12 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
         commands.addKeyBinding({
             selector: '.jp-Notebook.jp-mod-editMode',
             keys: ['Ctrl J'],
-            command: 'notebook:move-cursor-down'
+            command: 'select-below-execute-markdown'
         });
         commands.addKeyBinding({
             selector: '.jp-Notebook.jp-mod-editMode',
             keys: ['Ctrl K'],
-            command: 'notebook:move-cursor-up'
+            command: 'select-above-execute-markdown'
         });
         commands.addKeyBinding({
             selector: '.jp-Notebook.jp-mod-editMode',
