@@ -10,9 +10,25 @@ Notebook cell vim bindings
 I want to acknowledge [Alisue](https://github.com/lambdalisue) and his excellent work creating [vim bindings](https://github.com/lambdalisue/jupyter-vim-binding) for Jupyter notebooks.
 I hope this extension can meet the high bar his work set.
 
+## Modes
+
+This extension splits Jupyter edit mode into two modes: Vim command mode and Vim insert mode.
+Three editing modes now exist: Jupyter command, Vim command, and Vim insert.
+
 ## Key Bindings
 
-| Chord          | Command                   |
+Shortcuts this extension introduces:
+
+### Vim Ex commands
+
+| Command  | Action                     |
+| -------  | ------                     |
+| :w[rite] | Save Notebook              |
+| :q[uit]  | Enter Jupyter command mode |
+
+### Vim command bindings
+
+| Chord          | Action                    |
 | -----          | -------                   |
 | Ctrl-O, U      | Undo Cell Action          |
 | Ctrl-O, -      | Split Cell at Cursor      |
@@ -25,10 +41,19 @@ I hope this extension can meet the high bar his work set.
 | Ctrl-O, Ctrl-O | Insert Cell Above         |
 | Ctrl-J         | Select Cell Below         |
 | Ctrl-K         | Select Cell Above         |
+| Ctrl-O, G      | Select First Cell         |
+| Ctrl-O, Ctrl-G | Select Last Cell          |
 | Command/Ctrl-1 | Code Cell Mode            |
 | Command/Ctrl-2 | Markdown Cell Mode        |
 | Command/Ctrl-3 | Raw Cell Mode             |
 | Shift-Escape   | Leave Vim Mode            |
+
+### Jupyter command bindings
+
+| Chord   | Action            |
+| -----   | ------            |
+| G, G    | Select First Cell |
+| Shift-G | Select Last Cell  |
 
 ## Prerequisites
 

@@ -300,6 +300,30 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
             },
             isEnabled
         });
+        commands.addCommand('select-first-cell', {
+            label: 'Select First Cell',
+            execute: args => {
+                const current = getCurrent(args);
+
+                if (current) {
+                    current.notebook.activeCellIndex = 0;
+                    current.notebook.deselectAll();
+                }
+            },
+            isEnabled
+        });
+        commands.addCommand('select-last-cell', {
+            label: 'Select Last Cell',
+            execute: args => {
+                const current = getCurrent(args);
+
+                if (current) {
+                    current.notebook.activeCellIndex = current.notebook.widgets.length - 1;
+                    current.notebook.deselectAll();
+                }
+            },
+            isEnabled
+        });
 
         commands.addKeyBinding({
             selector: '.jp-Notebook.jp-mod-editMode',
@@ -411,6 +435,26 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
             selector: '.jp-Notebook.jp-mod-editMode',
             keys: ['Accel 3'],
             command: 'notebook:change-cell-to-raw'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-editMode',
+            keys: ['Ctrl O', 'G'],
+            command: 'select-first-cell'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-editMode',
+            keys: ['Ctrl O', 'Ctrl G'],
+            command: 'select-last-cell'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-commandMode',
+            keys: ['G', 'G'],
+            command: 'select-first-cell'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-commandMode',
+            keys: ['Shift G'],
+            command: 'select-last-cell'
         });
 
         // tslint:disable:no-unused-expression
