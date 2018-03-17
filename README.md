@@ -60,6 +60,7 @@ Shortcuts this extension introduces:
 | Shift-P | Paste Cell Above  |
 | O       | Insert Cell       |
 | Shift-O | Insert Cell Above |
+| U       | Undo Cell Action  |
 
 ## Prerequisites
 

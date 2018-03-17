@@ -486,6 +486,11 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
             keys: ['Shift O'],
             command: 'notebook:insert-cell-above'
         });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-commandMode',
+            keys: ['U'],
+            command: 'notebook:undo-cell-action'
+        });
 
         // tslint:disable:no-unused-expression
         new VimCell(app, tracker);
