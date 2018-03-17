@@ -58,6 +58,8 @@ Shortcuts this extension introduces:
 | Y, Y    | Yank (Copy) Cell  |
 | P       | Paste Cell        |
 | Shift-P | Paste Cell Above  |
+| O       | Insert Cell       |
+| Shift-O | Insert Cell Above |
 
 ## Prerequisites
 

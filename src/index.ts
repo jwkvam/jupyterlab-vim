@@ -476,6 +476,16 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
             keys: ['P'],
             command: 'notebook:paste-cell-below'
         });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-commandMode',
+            keys: ['O'],
+            command: 'notebook:insert-cell-below'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-commandMode',
+            keys: ['Shift O'],
+            command: 'notebook:insert-cell-above'
+        });
 
         // tslint:disable:no-unused-expression
         new VimCell(app, tracker);
