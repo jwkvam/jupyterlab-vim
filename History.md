@@ -1,5 +1,12 @@
 # History
 
+## 0.5.0 / 2018-03-27
+
+  * add moving cell commands
+  * Add delete/yank/paste cell commands (#28)
+  * select first and last cell shortcuts (#24)
+  * change to focus selector to fix debug prompt select
+
 ## 0.4.1 / 2018-02-14
 
   * Ctrl-J and Ctrl-K execute markdown when leaving the cell.
