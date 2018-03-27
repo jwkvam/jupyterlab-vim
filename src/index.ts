@@ -512,6 +512,16 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
             keys: ['U'],
             command: 'notebook:undo-cell-action'
         });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook:focus',
+            keys: ['Ctrl E'],
+            command: 'notebook:move-cell-down'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook:focus',
+            keys: ['Ctrl Y'],
+            command: 'notebook:move-cell-up'
+        });
 
         // tslint:disable:no-unused-expression
         new VimCell(app, tracker);
