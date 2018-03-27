@@ -54,6 +54,13 @@ Shortcuts this extension introduces:
 | -----   | ------            |
 | G, G    | Select First Cell |
 | Shift-G | Select Last Cell  |
+| D, D    | Delete Cell       |
+| Y, Y    | Yank (Copy) Cell  |
+| P       | Paste Cell        |
+| Shift-P | Paste Cell Above  |
+| O       | Insert Cell       |
+| Shift-O | Insert Cell Above |
+| U       | Undo Cell Action  |
 
 ## Prerequisites
 

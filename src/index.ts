@@ -456,6 +456,41 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
             keys: ['Shift G'],
             command: 'select-last-cell'
         });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-commandMode',
+            keys: ['Y', 'Y'],
+            command: 'notebook:copy-cell'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-commandMode',
+            keys: ['D', 'D'],
+            command: 'notebook:cut-cell'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-commandMode',
+            keys: ['Shift P'],
+            command: 'notebook:paste-cell-above'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-commandMode',
+            keys: ['P'],
+            command: 'notebook:paste-cell-below'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-commandMode',
+            keys: ['O'],
+            command: 'notebook:insert-cell-below'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-commandMode',
+            keys: ['Shift O'],
+            command: 'notebook:insert-cell-above'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-commandMode',
+            keys: ['U'],
+            command: 'notebook:undo-cell-action'
+        });
 
         // tslint:disable:no-unused-expression
         new VimCell(app, tracker);
