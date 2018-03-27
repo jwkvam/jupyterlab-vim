@@ -43,6 +43,8 @@ Shortcuts this extension introduces:
 | Ctrl-K         | Select Cell Above         |
 | Ctrl-O, G      | Select First Cell         |
 | Ctrl-O, Ctrl-G | Select Last Cell          |
+| Ctrl-E         | Move Cell Down            |
+| Ctrl-Y         | Move Cell Up              |
 | Command/Ctrl-1 | Code Cell Mode            |
 | Command/Ctrl-2 | Markdown Cell Mode        |
 | Command/Ctrl-3 | Raw Cell Mode             |
@@ -61,6 +63,8 @@ Shortcuts this extension introduces:
 | O       | Insert Cell       |
 | Shift-O | Insert Cell Above |
 | U       | Undo Cell Action  |
+| Ctrl-E  | Move Cells Down   |
+| Ctrl-Y  | Move Cells Up     |
 
 ## Prerequisites
 
