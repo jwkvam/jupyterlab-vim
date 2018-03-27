@@ -20,16 +20,20 @@ import {
     ReadonlyJSONObject
 } from '@phosphor/coreutils';
 
+import {
+    ElementExt
+} from '@phosphor/domutils';
+
 import '../style/index.css';
 
 /**
  * Initialization data for the jupyterlab_vim extension.
  */
 const extension: JupyterLabPlugin<void> = {
-  id: 'jupyterlab_vim',
-  autoStart: true,
-  activate: activateCellVim,
-  requires: [INotebookTracker]
+    id: 'jupyterlab_vim',
+    autoStart: true,
+    activate: activateCellVim,
+    requires: [INotebookTracker]
 };
 
 class VimCell {
@@ -155,6 +159,15 @@ class VimCell {
                 { forward: true, linewise: true },
                 { context: 'normal' }
             );
+
+            lvim.defineAction('moveCellDown', (cm: any, actionArgs: any) => {
+                commands.execute('notebook:move-cell-down');
+            });
+            lvim.defineAction('moveCellUp', (cm: any, actionArgs: any) => {
+                commands.execute('notebook:move-cell-up');
+            });
+            lvim.mapCommand('<C-e>', 'action', 'moveCellDown', {}, {extra: 'normal'});
+            lvim.mapCommand('<C-y>', 'action', 'moveCellUp', {}, {extra: 'normal'});
         }
     }
 
@@ -308,6 +321,10 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
                 if (current) {
                     current.notebook.activeCellIndex = 0;
                     current.notebook.deselectAll();
+                    ElementExt.scrollIntoViewIfNeeded(
+                        current.notebook.node,
+                        current.notebook.activeCell.node
+                    );
                 }
             },
             isEnabled
@@ -320,6 +337,10 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
                 if (current) {
                     current.notebook.activeCellIndex = current.notebook.widgets.length - 1;
                     current.notebook.deselectAll();
+                    ElementExt.scrollIntoViewIfNeeded(
+                        current.notebook.node,
+                        current.notebook.activeCell.node
+                    );
                 }
             },
             isEnabled
@@ -356,7 +377,7 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
             command: 'notebook:extend-marked-cells-below'
         });
         commands.addKeyBinding({
-            selector: '.jp-Notebook.jp-mod-commandMode',
+            selector: '.jp-Notebook:focus',
             keys: ['Ctrl Shift J'],
             command: 'notebook:extend-marked-cells-below'
         });
@@ -366,7 +387,7 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
             command: 'notebook:extend-marked-cells-above'
         });
         commands.addKeyBinding({
-            selector: '.jp-Notebook.jp-mod-commandMode',
+            selector: '.jp-Notebook:focus',
             keys: ['Ctrl Shift K'],
             command: 'notebook:extend-marked-cells-above'
         });
@@ -417,7 +438,7 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
             command: 'notebook:enter-command-mode'
         });
         commands.addKeyBinding({
-            selector: '.jp-Notebook.jp-mod-commandMode',
+            selector: '.jp-Notebook:focus',
             keys: ['Shift M'],
             command: 'merge-and-edit'
         });
@@ -447,49 +468,59 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
             command: 'select-last-cell'
         });
         commands.addKeyBinding({
-            selector: '.jp-Notebook.jp-mod-commandMode',
+            selector: '.jp-Notebook:focus',
             keys: ['G', 'G'],
             command: 'select-first-cell'
         });
         commands.addKeyBinding({
-            selector: '.jp-Notebook.jp-mod-commandMode',
+            selector: '.jp-Notebook:focus',
             keys: ['Shift G'],
             command: 'select-last-cell'
         });
         commands.addKeyBinding({
-            selector: '.jp-Notebook.jp-mod-commandMode',
+            selector: '.jp-Notebook:focus',
             keys: ['Y', 'Y'],
             command: 'notebook:copy-cell'
         });
         commands.addKeyBinding({
-            selector: '.jp-Notebook.jp-mod-commandMode',
+            selector: '.jp-Notebook:focus',
             keys: ['D', 'D'],
             command: 'notebook:cut-cell'
         });
         commands.addKeyBinding({
-            selector: '.jp-Notebook.jp-mod-commandMode',
+            selector: '.jp-Notebook:focus',
             keys: ['Shift P'],
             command: 'notebook:paste-cell-above'
         });
         commands.addKeyBinding({
-            selector: '.jp-Notebook.jp-mod-commandMode',
+            selector: '.jp-Notebook:focus',
             keys: ['P'],
             command: 'notebook:paste-cell-below'
         });
         commands.addKeyBinding({
-            selector: '.jp-Notebook.jp-mod-commandMode',
+            selector: '.jp-Notebook:focus',
             keys: ['O'],
             command: 'notebook:insert-cell-below'
         });
         commands.addKeyBinding({
-            selector: '.jp-Notebook.jp-mod-commandMode',
+            selector: '.jp-Notebook:focus',
             keys: ['Shift O'],
             command: 'notebook:insert-cell-above'
         });
         commands.addKeyBinding({
-            selector: '.jp-Notebook.jp-mod-commandMode',
+            selector: '.jp-Notebook:focus',
             keys: ['U'],
             command: 'notebook:undo-cell-action'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook:focus',
+            keys: ['Ctrl E'],
+            command: 'notebook:move-cell-down'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook:focus',
+            keys: ['Ctrl Y'],
+            command: 'notebook:move-cell-up'
         });
 
         // tslint:disable:no-unused-expression
