@@ -27,6 +27,11 @@ import {
 import '../style/index.css';
 
 /**
+ * A boolean indicating whether the platform is Mac.
+ */
+const IS_MAC = !!navigator.platform.match(/Mac/i);
+
+/**
  * Initialization data for the jupyterlab_vim extension.
  */
 const extension: JupyterLabPlugin<void> = {
@@ -57,7 +62,9 @@ class VimCell {
             let extraKeys = editor.getOption('extraKeys') || {};
 
             extraKeys['Esc'] = CodeMirror.prototype.leaveInsertMode;
-            extraKeys['Ctrl-C'] = CodeMirror.prototype.leaveInsertMode;
+            if (IS_MAC) {
+                extraKeys['Ctrl-C'] = CodeMirror.prototype.leaveInsertMode;
+            }
 
             CodeMirror.prototype.save = () => {
                 commands.execute('docmanager:save');
