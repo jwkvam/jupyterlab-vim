@@ -1,5 +1,11 @@
 # History
 
+## 0.6.0 / 2018-03-28
+
+  * center cell command (#33)
+  * `-` splits cell in vim command mode (#33)
+  * ctrl-c copies instead of leaving insert mode if you aren't on a mac (#34)
+
 ## 0.5.0 / 2018-03-27
 
   * add moving cell commands
