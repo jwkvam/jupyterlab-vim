@@ -47,6 +47,7 @@ Shortcuts this extension introduces:
 | Ctrl-E         | Move Cell Down            |
 | Ctrl-Y         | Move Cell Up              |
 | Ctrl-O, Z, Z   | Center Cell               |
+| Ctrl-G         | Show Tooltip              |
 | Command/Ctrl-1 | Code Cell Mode            |
 | Command/Ctrl-2 | Markdown Cell Mode        |
 | Command/Ctrl-3 | Raw Cell Mode             |
