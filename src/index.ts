@@ -175,6 +175,10 @@ class VimCell {
             });
             lvim.mapCommand('<C-e>', 'action', 'moveCellDown', {}, {extra: 'normal'});
             lvim.mapCommand('<C-y>', 'action', 'moveCellUp', {}, {extra: 'normal'});
+            lvim.defineAction('splitCell', (cm: any, actionArgs: any) => {
+                commands.execute('notebook:split-cell-at-cursor');
+            });
+            lvim.mapCommand('-', 'action', 'splitCell', {}, {extra: 'normal'});
         }
     }
 
@@ -348,6 +352,18 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
                         current.notebook.node,
                         current.notebook.activeCell.node
                     );
+                }
+            },
+            isEnabled
+        });
+        commands.addCommand('center-cell', {
+            label: 'Center Cell',
+            execute: args => {
+                const current = getCurrent(args);
+
+                if (current) {
+                    let er = current.notebook.activeCell.inputArea.node.getBoundingClientRect();
+                    current.notebook.scrollToPosition(er.bottom, 0);
                 }
             },
             isEnabled
@@ -528,6 +544,16 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
             selector: '.jp-Notebook:focus',
             keys: ['Ctrl Y'],
             command: 'notebook:move-cell-up'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook:focus',
+            keys: ['Z', 'Z'],
+            command: 'center-cell'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-editMode',
+            keys: ['Ctrl O', 'Z', 'Z'],
+            command: 'center-cell'
         });
 
         // tslint:disable:no-unused-expression

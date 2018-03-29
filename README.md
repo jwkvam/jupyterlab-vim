@@ -31,6 +31,7 @@ Shortcuts this extension introduces:
 | Chord          | Action                    |
 | -----          | -------                   |
 | Ctrl-O, U      | Undo Cell Action          |
+| -              | Split Cell at Cursor      |
 | Ctrl-O, -      | Split Cell at Cursor      |
 | Ctrl-O, D      | Cut Cell                  |
 | Ctrl-O, Y      | Copy Cell                 |
@@ -45,6 +46,7 @@ Shortcuts this extension introduces:
 | Ctrl-O, Ctrl-G | Select Last Cell          |
 | Ctrl-E         | Move Cell Down            |
 | Ctrl-Y         | Move Cell Up              |
+| Ctrl-O, Z, Z   | Center Cell               |
 | Command/Ctrl-1 | Code Cell Mode            |
 | Command/Ctrl-2 | Markdown Cell Mode        |
 | Command/Ctrl-3 | Raw Cell Mode             |
@@ -65,6 +67,7 @@ Shortcuts this extension introduces:
 | U       | Undo Cell Action  |
 | Ctrl-E  | Move Cells Down   |
 | Ctrl-Y  | Move Cells Up     |
+| Z, Z    | Center Cell       |
 
 ## Prerequisites
 
