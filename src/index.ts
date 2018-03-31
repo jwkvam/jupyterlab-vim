@@ -555,6 +555,11 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
             keys: ['Ctrl O', 'Z', 'Z'],
             command: 'center-cell'
         });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-editMode .jp-InputArea-editor:not(.jp-mod-has-primary-selection)',
+            keys: ['Ctrl G'],
+            command: 'tooltip:launch-notebook'
+        });
 
         // tslint:disable:no-unused-expression
         new VimCell(app, tracker);
