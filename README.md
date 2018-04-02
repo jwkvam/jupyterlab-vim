@@ -2,6 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/jupyterlab_vim.svg)](https://www.npmjs.com/package/jupyterlab_vim)
 [![Build Status](https://travis-ci.org/jwkvam/jupyterlab_vim.svg?branch=master)](https://travis-ci.org/jwkvam/jupyterlab_vim)
+[![npm downloads](https://img.shields.io/npm/dw/jupyterlab_vim.svg)](https://www.npmjs.com/package/jupyterlab_vim)
 
 Notebook cell vim bindings
 
