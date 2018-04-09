@@ -73,23 +73,24 @@ Shortcuts this extension introduces:
 | Ctrl-Y  | Move Cells Up     |
 | Z, Z    | Center Cell       |
 
-## Prerequisites
+## Install
+### Prerequisites
 
 * JupyterLab
 
-## Install
+### Install or upgrade
 
 ```bash
 jupyter labextension install jupyterlab_vim
 ```
 
-## Uninstall
+### Uninstall
 
 ```bash
 jupyter labextension uninstall jupyterlab_vim
 ```
 
-## Development
+### Development
 
 For a development install (requires npm version 4 or later), do the following in the repository directory:
 
