@@ -13,6 +13,10 @@ import {
 } from '@jupyterlab/cells';
 
 import {
+  ISettingRegistry
+} from '@jupyterlab/coreutils';
+
+import {
     CodeMirrorEditor
 } from '@jupyterlab/codemirror';
 
@@ -38,7 +42,7 @@ const extension: JupyterLabPlugin<void> = {
     id: 'jupyterlab_vim',
     autoStart: true,
     activate: activateCellVim,
-    requires: [INotebookTracker]
+    requires: [INotebookTracker, ISettingRegistry]
 };
 
 class VimCell {
@@ -77,8 +81,7 @@ class VimCell {
             lvim.defineEx('quit', 'q', function(cm: any) {
                 commands.execute('notebook:enter-command-mode');
             });
-
-            (CodeMirror as any).Vim.handleKey(editor.editor, '<Esc>');
+            lvim.handleKey(editor.editor, '<Esc>');
             lvim.defineMotion('moveByLinesOrCell', (cm: any, head: any, motionArgs: any, vim: any) => {
                 let cur = head;
                 let endCh = cur.ch;
@@ -186,10 +189,11 @@ class VimCell {
     private _app: JupyterLab;
 }
 
-function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<void> {
+function activateCellVim(app: JupyterLab, tracker: INotebookTracker, settingRegistry: ISettingRegistry): Promise<void> {
+    const id = plugin.id;
+    const { commands, shell } = app;
 
-    Promise.all([app.restored]).then(([args]) => {
-        const { commands, shell } = app;
+    Promise.all([settingRegistry.load(id), app.restored]).then(([settings, args]) => {
         function getCurrent(args: ReadonlyJSONObject): NotebookPanel | null {
             const widget = tracker.currentWidget;
             const activate = args['activate'] !== false;

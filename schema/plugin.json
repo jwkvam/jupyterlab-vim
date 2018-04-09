@@ -1,0 +1,53 @@
+{
+    "jupyter.lab.setting-icon-class": "jp-NotebookIcon",
+    "jupyter.lab.setting-icon-label": "Notebook",
+    "title": "Vim Notebook Cell",
+    "description": "Vim Notebook Cell Settings",
+    "definitions": {
+        "editorConfig": {
+            "properties": {
+                "autoClosingBrackets": {
+                    "type": "boolean"
+                },
+                "lineNumbers": {
+                    "type": "boolean"
+                },
+                "lineWrap": {
+                    "type": "boolean"
+                },
+                "matchBrackets": {
+                    "type": "boolean"
+                },
+                "readOnly": {
+                    "type": "boolean"
+                },
+                "insertSpaces": {
+                    "type": "boolean"
+                },
+                "tabSize": {
+                    "type": "number"
+                }
+            },
+            "additionalProperties": false,
+            "type": "object"
+        }
+    },
+    "properties": {
+        "editorConfig": {
+            "title": "Editor Configuration",
+            "description": "The configuration for all text editors.",
+            "$ref": "#/definitions/editorConfig",
+            "default": {
+                "autoClosingBrackets": true,
+                "lineNumbers": true,
+                "lineWrap": true,
+                "matchBrackets": true,
+                "readOnly": false,
+                "insertSpaces": true,
+                "tabSize": 4
+            }
+        }
+    },
+    "additionalProperties": false,
+    "type": "object"
+}
