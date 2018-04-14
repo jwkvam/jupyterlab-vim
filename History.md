@@ -1,5 +1,10 @@
 # History
 
+## 0.7.0 / ???
+
+  * Requires JupyterLab 0.32 (Beta 2)
+  * ctrl-g shows function signature (#36)
+
 ## 0.6.0 / 2018-03-28
 
   * center cell command (#33)
