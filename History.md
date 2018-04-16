@@ -1,6 +1,6 @@
 # History
 
-## 0.7.0 / ???
+## 0.7.0 / 2018-04-16
 
   * Requires JupyterLab 0.32 (Beta 2)
   * ctrl-g shows function signature (#36)
