@@ -20,6 +20,9 @@ Three editing modes now exist: Jupyter command, Vim command, and Vim insert.
 
 ## Key Bindings
 
+**Please note that all keys are lowercase unless `Shift` is explicitly indicated.**
+For example, `Y, Y` is two lowercase `y`s, `Shift-Y, Y` is one uppercase `Y` followed by a lowercase `y`.
+
 Shortcuts this extension introduces:
 
 ### Vim Ex commands
