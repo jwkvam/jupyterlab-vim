@@ -211,9 +211,9 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
                 const current = getCurrent(args);
 
                 if (current) {
-                    const { context, notebook } = current;
-                    NotebookActions.runAndAdvance(notebook, context.session);
-                    current.notebook.mode = 'edit';
+                    const { context, content } = current;
+                    NotebookActions.runAndAdvance(content, context.session);
+                    current.content.mode = 'edit';
                 }
             },
             isEnabled
@@ -224,9 +224,9 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
                 const current = getCurrent(args);
 
                 if (current) {
-                    const { context, notebook } = current;
-                    NotebookActions.run(notebook, context.session);
-                    current.notebook.mode = 'edit';
+                    const { context, content } = current;
+                    NotebookActions.run(content, context.session);
+                    current.content.mode = 'edit';
                 }
             },
             isEnabled
@@ -237,9 +237,9 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
                 const current = getCurrent(args);
 
                 if (current) {
-                    const { notebook } = current;
-                    NotebookActions.cut(notebook);
-                    notebook.mode = 'edit';
+                    const { content } = current;
+                    NotebookActions.cut(content);
+                    content.mode = 'edit';
                 }
             },
             isEnabled
@@ -250,9 +250,9 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
                 const current = getCurrent(args);
 
                 if (current) {
-                    const { notebook } = current;
-                    NotebookActions.copy(notebook);
-                    notebook.mode = 'edit';
+                    const { content } = current;
+                    NotebookActions.copy(content);
+                    content.mode = 'edit';
                 }
             },
             isEnabled
@@ -263,9 +263,9 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
                 const current = getCurrent(args);
 
                 if (current) {
-                    const { notebook } = current;
-                    NotebookActions.paste(notebook, 'below');
-                    notebook.mode = 'edit';
+                    const { content } = current;
+                    NotebookActions.paste(content, 'below');
+                    content.mode = 'edit';
                 }
             },
             isEnabled
@@ -276,9 +276,9 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
                 const current = getCurrent(args);
 
                 if (current) {
-                    const { notebook } = current;
-                    NotebookActions.mergeCells(notebook);
-                    current.notebook.mode = 'edit';
+                    const { content } = current;
+                    NotebookActions.mergeCells(content);
+                    current.content.mode = 'edit';
                 }
             },
             isEnabled
@@ -289,8 +289,8 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
                 const current = getCurrent(args);
 
                 if (current) {
-                    const { notebook } = current;
-                    let editor = notebook.activeCell.editor as CodeMirrorEditor;
+                    const { content } = current;
+                    let editor = content.activeCell.editor as CodeMirrorEditor;
                     (CodeMirror as any).Vim.handleKey(editor.editor, '<Esc>');
                 }
             },
@@ -302,10 +302,10 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
                 const current = getCurrent(args);
 
                 if (current) {
-                    if (current.notebook.activeCell.model.type === 'markdown') {
-                        (current.notebook.activeCell as MarkdownCell).rendered = true;
+                    if (current.content.activeCell.model.type === 'markdown') {
+                        (current.content.activeCell as MarkdownCell).rendered = true;
                     }
-                    return NotebookActions.selectBelow(current.notebook);
+                    return NotebookActions.selectBelow(current.content);
                 }
             },
             isEnabled
@@ -316,10 +316,10 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
                 const current = getCurrent(args);
 
                 if (current) {
-                    if (current.notebook.activeCell.model.type === 'markdown') {
-                        (current.notebook.activeCell as MarkdownCell).rendered = true;
+                    if (current.content.activeCell.model.type === 'markdown') {
+                        (current.content.activeCell as MarkdownCell).rendered = true;
                     }
-                    return NotebookActions.selectAbove(current.notebook);
+                    return NotebookActions.selectAbove(current.content);
                 }
             },
             isEnabled
@@ -330,11 +330,11 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
                 const current = getCurrent(args);
 
                 if (current) {
-                    current.notebook.activeCellIndex = 0;
-                    current.notebook.deselectAll();
+                    current.content.activeCellIndex = 0;
+                    current.content.deselectAll();
                     ElementExt.scrollIntoViewIfNeeded(
-                        current.notebook.node,
-                        current.notebook.activeCell.node
+                        current.content.node,
+                        current.content.activeCell.node
                     );
                 }
             },
@@ -346,11 +346,11 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
                 const current = getCurrent(args);
 
                 if (current) {
-                    current.notebook.activeCellIndex = current.notebook.widgets.length - 1;
-                    current.notebook.deselectAll();
+                    current.content.activeCellIndex = current.content.widgets.length - 1;
+                    current.content.deselectAll();
                     ElementExt.scrollIntoViewIfNeeded(
-                        current.notebook.node,
-                        current.notebook.activeCell.node
+                        current.content.node,
+                        current.content.activeCell.node
                     );
                 }
             },
@@ -362,8 +362,8 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
                 const current = getCurrent(args);
 
                 if (current) {
-                    let er = current.notebook.activeCell.inputArea.node.getBoundingClientRect();
-                    current.notebook.scrollToPosition(er.bottom, 0);
+                    let er = current.content.activeCell.inputArea.node.getBoundingClientRect();
+                    current.content.scrollToPosition(er.bottom, 0);
                 }
             },
             isEnabled
