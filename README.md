@@ -76,7 +76,7 @@ Shortcuts this extension introduces:
 ## Install
 ### Prerequisites
 
-* JupyterLab 0.32
+* JupyterLab 0.33
 
 ### Install or upgrade
 
