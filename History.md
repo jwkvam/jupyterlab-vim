@@ -1,5 +1,10 @@
 # History
 
+## 0.8.0 / 2018-08-01
+==================
+
+  * Update for JupyterLab 0.33 (#52) Thanks @ah-
+
 ## 0.7.0 / 2018-04-16
 
   * Requires JupyterLab 0.32 (Beta 2)
