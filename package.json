@@ -1,6 +1,6 @@
 {
   "name": "jupyterlab_vim",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "Code cell vim bindings",
   "author": "Jacques Kvam",
   "main": "lib/index.js",
