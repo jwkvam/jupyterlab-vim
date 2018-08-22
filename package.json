@@ -34,10 +34,10 @@
     "extension": true
   },
   "dependencies": {
-    "@jupyterlab/application": "^0.17.2",
-    "@jupyterlab/codemirror": "^0.17.2",
-    "@jupyterlab/cells": "^0.17.2",
-    "@jupyterlab/notebook": "^0.17.2",
+    "@jupyterlab/application": "^0.18.0",
+    "@jupyterlab/codemirror": "^0.18.0",
+    "@jupyterlab/cells": "^0.18.0",
+    "@jupyterlab/notebook": "^0.18.0",
     "@phosphor/commands": "^1.4.0",
     "@phosphor/coreutils": "^1.3.0",
     "@phosphor/domutils": "^1.1.2",
