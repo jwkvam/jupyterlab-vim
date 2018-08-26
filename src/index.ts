@@ -39,7 +39,7 @@ const IS_MAC = !!navigator.platform.match(/Mac/i);
  * Initialization data for the jupyterlab_vim extension.
  */
 const extension: JupyterLabPlugin<void> = {
-    id: 'jupyterlab_vim',
+    id: 'jupyterlab_vim:vim',
     autoStart: true,
     activate: activateCellVim,
     requires: [INotebookTracker, ISettingRegistry]
@@ -190,10 +190,15 @@ class VimCell {
 }
 
 function activateCellVim(app: JupyterLab, tracker: INotebookTracker, settingRegistry: ISettingRegistry): Promise<void> {
-    const id = plugin.id;
+    const id = extension.id;
     const { commands, shell } = app;
 
     Promise.all([settingRegistry.load(id), app.restored]).then(([settings, args]) => {
+    // Promise.all([app.restored]).then(([args]) => {
+        const enabled = settings.get('enable').composite as boolean;
+        if (enabled === false) {
+            return;
+        }
         function getCurrent(args: ReadonlyJSONObject): NotebookPanel | null {
             const widget = tracker.currentWidget;
             const activate = args['activate'] !== false;
