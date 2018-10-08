@@ -1,4 +1,4 @@
-yarn.lock
+package-lock.json
 *.ipynb*
 tags
 tags.lock
