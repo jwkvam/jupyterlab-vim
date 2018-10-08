@@ -3,6 +3,7 @@
   "version": "0.10.0",
   "description": "Code cell vim bindings",
   "author": "Jacques Kvam",
+  "license": "MIT",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "license": "MIT",
