@@ -79,7 +79,7 @@ Shortcuts this extension introduces:
 ## Install
 ### Prerequisites
 
-* JupyterLab 0.34
+* JupyterLab 0.35
 
 ### Install or upgrade
 
@@ -95,7 +95,7 @@ jupyter labextension uninstall jupyterlab_vim
 
 ### Development
 
-For a development install (requires npm version 4 or later), do the following in the repository directory:
+For a development install (requires npm version 4 or later), do the following in the repository directory. **Please note**, you need to make sure that you satisfy all the prerequisites, i.e. the JupyterLab version.
 
 ```bash
 jlpm install
