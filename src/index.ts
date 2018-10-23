@@ -283,6 +283,20 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
             },
             isEnabled
         });
+        commands.addCommand('enter-insert-mode', {
+            label: 'Enter Insert Mode',
+            execute: args => {
+                const current = getCurrent(args);
+
+                if (current) {
+                    const { content } = current;
+                    let editor = content.activeCell.editor as CodeMirrorEditor;
+                    current.content.mode = 'edit';
+                    (CodeMirror as any).Vim.handleKey(editor.editor, 'i');
+                }
+            },
+            isEnabled
+        });
         commands.addCommand('leave-insert-mode', {
             label: 'Leave Insert Mode',
             execute: args => {
@@ -444,6 +458,11 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
             selector: '.jp-Notebook.jp-mod-editMode',
             keys: ['Escape'],
             command: 'leave-insert-mode'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook.jp-mod-commandMode',
+            keys: ['I'],
+            command: 'enter-insert-mode'
         });
         commands.addKeyBinding({
             selector: '.jp-Notebook.jp-mod-editMode',
