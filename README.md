@@ -93,7 +93,7 @@ Shortcuts this extension introduces:
 | Ctrl-Y  | Move Cells Up     |
 | Z, Z    | Center Cell       |
 
-## Contributors
+## Contributing
 
 Contributions and feedback are most welcome!
 
