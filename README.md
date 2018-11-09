@@ -18,6 +18,23 @@ I hope this extension can meet the high bar his work set.
 This extension splits Jupyter edit mode into two modes: Vim command mode and Vim insert mode.
 Three editing modes now exist: Jupyter command, Vim command, and Vim insert.
 
+## Install
+### Prerequisites
+
+* JupyterLab 0.35
+
+### Install or upgrade
+
+```bash
+jupyter labextension install jupyterlab_vim
+```
+
+### Uninstall
+
+```bash
+jupyter labextension uninstall jupyterlab_vim
+```
+
 ## Key Bindings
 
 **Please note that all keys are lowercase unless `Shift` is explicitly indicated.**
@@ -76,24 +93,13 @@ Shortcuts this extension introduces:
 | Ctrl-Y  | Move Cells Up     |
 | Z, Z    | Center Cell       |
 
-## Install
-### Prerequisites
+## Contributors
 
-* JupyterLab 0.35
+Contributions and feedback are most welcome!
 
-### Install or upgrade
+[![](https://sourcerer.io/fame/jwkvam/jwkvam/jupyterlab-vim/images/0)](https://sourcerer.io/fame/jwkvam/jwkvam/jupyterlab-vim/links/0)[![](https://sourcerer.io/fame/jwkvam/jwkvam/jupyterlab-vim/images/1)](https://sourcerer.io/fame/jwkvam/jwkvam/jupyterlab-vim/links/1)[![](https://sourcerer.io/fame/jwkvam/jwkvam/jupyterlab-vim/images/2)](https://sourcerer.io/fame/jwkvam/jwkvam/jupyterlab-vim/links/2)[![](https://sourcerer.io/fame/jwkvam/jwkvam/jupyterlab-vim/images/3)](https://sourcerer.io/fame/jwkvam/jwkvam/jupyterlab-vim/links/3)[![](https://sourcerer.io/fame/jwkvam/jwkvam/jupyterlab-vim/images/4)](https://sourcerer.io/fame/jwkvam/jwkvam/jupyterlab-vim/links/4)[![](https://sourcerer.io/fame/jwkvam/jwkvam/jupyterlab-vim/images/5)](https://sourcerer.io/fame/jwkvam/jwkvam/jupyterlab-vim/links/5)[![](https://sourcerer.io/fame/jwkvam/jwkvam/jupyterlab-vim/images/6)](https://sourcerer.io/fame/jwkvam/jwkvam/jupyterlab-vim/links/6)[![](https://sourcerer.io/fame/jwkvam/jwkvam/jupyterlab-vim/images/7)](https://sourcerer.io/fame/jwkvam/jwkvam/jupyterlab-vim/links/7)
 
-```bash
-jupyter labextension install jupyterlab_vim
-```
-
-### Uninstall
-
-```bash
-jupyter labextension uninstall jupyterlab_vim
-```
-
-### Development
+## Development
 
 For a development install (requires npm version 4 or later), do the following in the repository directory. **Please note**, you need to make sure that you satisfy all the prerequisites, i.e. the JupyterLab version.
 
