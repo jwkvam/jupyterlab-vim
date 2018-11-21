@@ -2,7 +2,7 @@
 
 ## 0.10.1 / 2018-11-21
 
-  * `ctrl i` enters Vim insert mode from Jupyter command mode (#71)
+  * `ctrl i` enters Vim insert mode from Jupyter command mode (#71) Thanks @wmayner
 
 ## 0.10.0 / 2018-10-08
 
