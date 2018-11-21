@@ -1,17 +1,18 @@
 # History
 
+## 0.10.1 / 2018-11-21
+
+  * `ctrl i` enters Vim insert mode from Jupyter command mode (#71) Thanks @wmayner
+
 ## 0.10.0 / 2018-10-08
-==================
 
   * Update for JupyterLab 0.35
 
 ## 0.9.0 / 2018-08-22
-==================
 
   * Update for JupyterLab 0.34 (#57) Thanks @MisterVulcan
 
 ## 0.8.0 / 2018-08-01
-==================
 
   * Update for JupyterLab 0.33 (#52) Thanks @ah-
 
