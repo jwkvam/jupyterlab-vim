@@ -4,6 +4,12 @@
     "title": "Vim Notebook Cell",
     "description": "Vim Notebook Cell Settings",
     "properties": {
+        "enable": {
+            "type": "boolean",
+            "title": "Enable",
+            "description": "Whether to enable the extension.",
+            "default": true
+        }
     },
     "type": "object"
 }

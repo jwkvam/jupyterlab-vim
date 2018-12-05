@@ -198,6 +198,10 @@ function activateCellVim(app: JupyterFrontEnd, tracker: INotebookTracker, settin
     const { commands, shell } = app;
 
     Promise.all([settingRegistry.load(id), app.restored]).then(([settings, args]) => {
+        const enabled = settings.get('enable').composite as boolean;
+        if (enabled === false) {
+            return;
+        }
         function getCurrent(args: ReadonlyJSONObject): NotebookPanel | null {
             const widget = tracker.currentWidget;
             const activate = args['activate'] !== false;
