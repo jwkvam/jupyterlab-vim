@@ -1,0 +1,9 @@
+{
+    "jupyter.lab.setting-icon-class": "jp-NotebookIcon",
+    "jupyter.lab.setting-icon-label": "Notebook",
+    "title": "Vim Notebook Cell",
+    "description": "Vim Notebook Cell Settings",
+    "properties": {
+    },
+    "type": "object"
+}
