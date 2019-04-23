@@ -1,16 +1,17 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
     "declaration": true,
     "noImplicitAny": true,
+    "strictNullChecks": true,
+    "skipLibCheck": true,
     "noEmitOnError": true,
     "noUnusedLocals": true,
+    "lib": ["DOM", "ES6"],
     "module": "commonjs",
     "moduleResolution": "node",
-    "target": "ES5",
-    "outDir": "./lib",
-    "lib": ["ES5", "ES2015.Promise", "DOM"],
-    "types": []
+    "target": "ES6",
+    "outDir": "lib",
+    "rootDir": "src",
   },
   "include": ["src/*"]
 }
