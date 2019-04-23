@@ -1,7 +1,7 @@
 import * as CodeMirror from 'codemirror';
 
 import {
-    JupyterLab, JupyterLabPlugin
+    JupyterFrontEnd, JupyterFrontEndPlugin
 } from '@jupyterlab/application';
 
 import {
@@ -34,7 +34,7 @@ const IS_MAC = !!navigator.platform.match(/Mac/i);
 /**
  * Initialization data for the jupyterlab_vim extension.
  */
-const extension: JupyterLabPlugin<void> = {
+const extension: JupyterFrontEndPlugin<void> = {
     id: 'jupyterlab_vim',
     autoStart: true,
     activate: activateCellVim,
@@ -43,7 +43,7 @@ const extension: JupyterLabPlugin<void> = {
 
 class VimCell {
 
-    constructor(app: JupyterLab, tracker: INotebookTracker) {
+    constructor(app: JupyterFrontEnd, tracker: INotebookTracker) {
         this._tracker = tracker;
         this._app = app;
         this._onActiveCellChanged();
@@ -183,10 +183,10 @@ class VimCell {
     }
 
     private _tracker: INotebookTracker;
-    private _app: JupyterLab;
+    private _app: JupyterFrontEnd;
 }
 
-function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<void> {
+function activateCellVim(app: JupyterFrontEnd, tracker: INotebookTracker): Promise<void> {
 
     Promise.all([app.restored]).then(([args]) => {
         const { commands, shell } = app;
@@ -290,9 +290,11 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
 
                 if (current) {
                     const { content } = current;
-                    let editor = content.activeCell.editor as CodeMirrorEditor;
-                    current.content.mode = 'edit';
-                    (CodeMirror as any).Vim.handleKey(editor.editor, 'i');
+                    if (content.activeCell !== null) {
+                        let editor = content.activeCell.editor as CodeMirrorEditor;
+                        current.content.mode = 'edit';
+                        (CodeMirror as any).Vim.handleKey(editor.editor, 'i');
+                    }
                 }
             },
             isEnabled
@@ -304,8 +306,10 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
 
                 if (current) {
                     const { content } = current;
-                    let editor = content.activeCell.editor as CodeMirrorEditor;
-                    (CodeMirror as any).Vim.handleKey(editor.editor, '<Esc>');
+                    if (content.activeCell !== null) {
+                        let editor = content.activeCell.editor as CodeMirrorEditor;
+                        (CodeMirror as any).Vim.handleKey(editor.editor, '<Esc>');
+                    }
                 }
             },
             isEnabled
@@ -316,7 +320,9 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
                 const current = getCurrent(args);
 
                 if (current) {
-                    if (current.content.activeCell.model.type === 'markdown') {
+                    const { content } = current;
+                    if (content.activeCell !== null &&
+                        content.activeCell.model.type === 'markdown') {
                         (current.content.activeCell as MarkdownCell).rendered = true;
                     }
                     return NotebookActions.selectBelow(current.content);
@@ -330,7 +336,9 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
                 const current = getCurrent(args);
 
                 if (current) {
-                    if (current.content.activeCell.model.type === 'markdown') {
+                    const { content } = current;
+                    if (content.activeCell !== null &&
+                        content.activeCell.model.type === 'markdown') {
                         (current.content.activeCell as MarkdownCell).rendered = true;
                     }
                     return NotebookActions.selectAbove(current.content);
@@ -344,12 +352,15 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
                 const current = getCurrent(args);
 
                 if (current) {
-                    current.content.activeCellIndex = 0;
-                    current.content.deselectAll();
-                    ElementExt.scrollIntoViewIfNeeded(
-                        current.content.node,
-                        current.content.activeCell.node
-                    );
+                    const { content } = current;
+                    content.activeCellIndex = 0;
+                    content.deselectAll();
+                    if (content.activeCell !== null) {
+                        ElementExt.scrollIntoViewIfNeeded(
+                            content.node,
+                            content.activeCell.node
+                        );
+                    }
                 }
             },
             isEnabled
@@ -360,12 +371,15 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
                 const current = getCurrent(args);
 
                 if (current) {
-                    current.content.activeCellIndex = current.content.widgets.length - 1;
-                    current.content.deselectAll();
-                    ElementExt.scrollIntoViewIfNeeded(
-                        current.content.node,
-                        current.content.activeCell.node
-                    );
+                    const { content } = current;
+                    content.activeCellIndex = current.content.widgets.length - 1;
+                    content.deselectAll();
+                    if (content.activeCell !== null) {
+                        ElementExt.scrollIntoViewIfNeeded(
+                            content.node,
+                            content.activeCell.node
+                        );
+                    }
                 }
             },
             isEnabled
@@ -375,7 +389,7 @@ function activateCellVim(app: JupyterLab, tracker: INotebookTracker): Promise<vo
             execute: args => {
                 const current = getCurrent(args);
 
-                if (current) {
+                if (current && current.content.activeCell != null) {
                     let er = current.content.activeCell.inputArea.node.getBoundingClientRect();
                     current.content.scrollToPosition(er.bottom, 0);
                 }
