@@ -75,6 +75,7 @@ Shortcuts this extension introduces:
 | Command/Ctrl-2 | Markdown Cell Mode        |
 | Command/Ctrl-3 | Raw Cell Mode             |
 | Shift-Escape   | Leave Vim Mode            |
+| Escape, Ctrl-\[ | Exit Vim Insert Mode      |
 
 ### Jupyter command bindings
 

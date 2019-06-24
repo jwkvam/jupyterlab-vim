@@ -1,5 +1,9 @@
 # History
 
+## 0.10.2 / 2019-06-24
+
+ * `ctrl [` exits Vim insert mode
+
 ## 0.10.1 / 2018-11-21
 
   * `ctrl i` enters Vim insert mode from Jupyter command mode (#71) Thanks @wmayner
