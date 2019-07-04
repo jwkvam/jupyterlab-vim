@@ -1,7 +1,7 @@
 import * as CodeMirror from 'codemirror';
 
 import {
-    JupyterLab, JupyterLabPlugin
+    JupyterLab, JupyterFrontEndPlugin
 } from '@jupyterlab/application';
 
 import {
@@ -34,7 +34,7 @@ const IS_MAC = !!navigator.platform.match(/Mac/i);
 /**
  * Initialization data for the jupyterlab_vim extension.
  */
-const extension: JupyterLabPlugin<void> = {
+const extension: JupyterFrontEndPlugin<void> = {
     id: 'jupyterlab_vim',
     autoStart: true,
     activate: activateCellVim,
