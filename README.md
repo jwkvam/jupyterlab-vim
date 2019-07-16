@@ -21,7 +21,7 @@ Three editing modes now exist: Jupyter command, Vim command, and Vim insert.
 ## Install
 ### Prerequisites
 
-* JupyterLab 0.35
+* JupyterLab 1.0
 
 ### Install or upgrade
 
