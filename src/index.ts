@@ -25,6 +25,9 @@ import {
 } from '@phosphor/domutils';
 
 import '../style/index.css';
+// Previously the vim keymap was loaded by JupyterLab, but now
+// it is lazy loaded, so we have to load it explicitly
+import 'codemirror/keymap/vim.js';
 
 /**
  * A boolean indicating whether the platform is Mac.
