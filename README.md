@@ -51,30 +51,31 @@ Shortcuts this extension introduces:
 
 ### Vim command bindings
 
-| Chord          | Action                    |
-| -----          | -------                   |
-| Ctrl-O, U      | Undo Cell Action          |
-| -              | Split Cell at Cursor      |
-| Ctrl-O, -      | Split Cell at Cursor      |
-| Ctrl-O, D      | Cut Cell                  |
-| Ctrl-O, Y      | Copy Cell                 |
-| Ctrl-O, P      | Paste Cell                |
-| Ctrl-Shift-J   | Extend Marked Cells Below |
-| Ctrl-Shift-K   | Extend Marked Cells Above |
-| Ctrl-O, O      | Insert Cell Below         |
-| Ctrl-O, Ctrl-O | Insert Cell Above         |
-| Ctrl-J         | Select Cell Below         |
-| Ctrl-K         | Select Cell Above         |
-| Ctrl-O, G      | Select First Cell         |
-| Ctrl-O, Ctrl-G | Select Last Cell          |
-| Ctrl-E         | Move Cell Down            |
-| Ctrl-Y         | Move Cell Up              |
-| Ctrl-O, Z, Z   | Center Cell               |
-| Ctrl-G         | Show Tooltip              |
-| Command/Ctrl-1 | Code Cell Mode            |
-| Command/Ctrl-2 | Markdown Cell Mode        |
-| Command/Ctrl-3 | Raw Cell Mode             |
-| Shift-Escape   | Leave Vim Mode            |
+| Chord           | Action                    |
+| -----           | ------                    |
+| Ctrl-O, U       | Undo Cell Action          |
+| -               | Split Cell at Cursor      |
+| Ctrl-O, -       | Split Cell at Cursor      |
+| Ctrl-O, D       | Cut Cell                  |
+| Ctrl-O, Y       | Copy Cell                 |
+| Ctrl-O, P       | Paste Cell                |
+| Ctrl-Shift-J    | Extend Marked Cells Below |
+| Ctrl-Shift-K    | Extend Marked Cells Above |
+| Ctrl-O, O       | Insert Cell Below         |
+| Ctrl-O, Ctrl-O  | Insert Cell Above         |
+| Ctrl-J          | Select Cell Below         |
+| Ctrl-K          | Select Cell Above         |
+| Ctrl-O, G       | Select First Cell         |
+| Ctrl-O, Ctrl-G  | Select Last Cell          |
+| Ctrl-E          | Move Cell Down            |
+| Ctrl-Y          | Move Cell Up              |
+| Ctrl-O, Z, Z    | Center Cell               |
+| Ctrl-G          | Show Tooltip              |
+| Command/Ctrl-1  | Code Cell Mode            |
+| Command/Ctrl-2  | Markdown Cell Mode        |
+| Command/Ctrl-3  | Raw Cell Mode             |
+| Shift-Escape    | Leave Vim Mode            |
+| Escape, Ctrl-\[ | Exit Vim Insert Mode      |
 
 ### Jupyter command bindings
 
