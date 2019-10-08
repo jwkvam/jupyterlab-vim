@@ -1,5 +1,9 @@
 # History
 
+## 0.11.1 / 2019-10-08
+
+  * `ctrl [` exits Vim insert mode
+
 ## 0.11.0 / 2019-07-13
 
   * Support JupyterLab 1.0.0+
