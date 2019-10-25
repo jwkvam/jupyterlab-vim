@@ -78,20 +78,21 @@ Shortcuts this extension introduces:
 
 ### Jupyter command bindings
 
-| Chord   | Action            |
-| -----   | ------            |
-| G, G    | Select First Cell |
-| Shift-G | Select Last Cell  |
-| D, D    | Delete Cell       |
-| Y, Y    | Yank (Copy) Cell  |
-| P       | Paste Cell        |
-| Shift-P | Paste Cell Above  |
-| O       | Insert Cell       |
-| Shift-O | Insert Cell Above |
-| U       | Undo Cell Action  |
-| Ctrl-E  | Move Cells Down   |
-| Ctrl-Y  | Move Cells Up     |
-| Z, Z    | Center Cell       |
+| Chord   | Action                                  |
+| -----   | ------                                  |
+| G, G    | Select First Cell                       |
+| Shift-G | Select Last Cell                        |
+| D, D    | Delete Cell                             |
+| Y, Y    | Yank (Copy) Cell                        |
+| P       | Paste Cell                              |
+| Shift-P | Paste Cell Above                        |
+| O       | Insert Cell                             |
+| Shift-O | Insert Cell Above                       |
+| U       | Undo Cell Action                        |
+| Ctrl-E  | Move Cells Down                         |
+| Ctrl-Y  | Move Cells Up                           |
+| Z, Z    | Center Cell                             |
+| Ctrl-I  | Leave Jupyter command mode (enter Cell) |
 
 ## Contributing
 
