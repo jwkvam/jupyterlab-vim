@@ -2,6 +2,10 @@
 
 ## 0.11.0 / 2019-07-13
 
+  * Add `CTRL+I` to keybindings in README (from 0.10.1 update)
+
+## 0.11.0 / 2019-07-13
+
   * Support JupyterLab 1.0.0+
 
 ## 0.10.1 / 2018-11-21
