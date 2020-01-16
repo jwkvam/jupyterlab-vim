@@ -7,6 +7,7 @@ lib/
 node_modules/
 *.egg-info/
 .ipynb_checkpoints
+.idea
 
 # Created by https://www.gitignore.io/api/node
 

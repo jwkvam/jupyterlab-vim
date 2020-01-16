@@ -15,6 +15,7 @@ import {
 import {
     CodeMirrorEditor
 } from '@jupyterlab/codemirror';
+import { ISettingRegistry } from '@jupyterlab/coreutils';
 
 import {
     ReadonlyJSONObject
@@ -33,15 +34,17 @@ import 'codemirror/keymap/vim.js';
  * A boolean indicating whether the platform is Mac.
  */
 const IS_MAC = !!navigator.platform.match(/Mac/i);
+const PLUGIN_NAME = 'jupyterlab_vim';
+let enabled = false;
 
 /**
  * Initialization data for the jupyterlab_vim extension.
  */
 const extension: JupyterFrontEndPlugin<void> = {
-    id: 'jupyterlab_vim',
+    id: PLUGIN_NAME,
     autoStart: true,
     activate: activateCellVim,
-    requires: [INotebookTracker]
+    requires: [INotebookTracker, ISettingRegistry]
 };
 
 class VimCell {
@@ -54,6 +57,9 @@ class VimCell {
     }
 
     private _onActiveCellChanged(): void {
+        if(!enabled) {
+            return;
+        }
         // if (this._prevActive && !this._prevActive.isDisposed) {
         //     this._prevActive.metadata.changed.disconnect(this._onMetadataChanged, this);
         // }
@@ -189,9 +195,8 @@ class VimCell {
     private _app: JupyterFrontEnd;
 }
 
-function activateCellVim(app: JupyterFrontEnd, tracker: INotebookTracker): Promise<void> {
-
-    Promise.all([app.restored]).then(([args]) => {
+async function setupPlugin(app: JupyterFrontEnd, tracker: INotebookTracker) {
+    await app.restored;
         const { commands, shell } = app;
         function getCurrent(args: ReadonlyJSONObject): NotebookPanel | null {
             const widget = tracker.currentWidget;
@@ -204,7 +209,7 @@ function activateCellVim(app: JupyterFrontEnd, tracker: INotebookTracker): Promi
             return widget;
         }
         function isEnabled(): boolean {
-            return tracker.currentWidget !== null &&
+            return enabled && tracker.currentWidget !== null &&
                 tracker.currentWidget === app.shell.currentWidget;
         }
 
@@ -598,8 +603,34 @@ function activateCellVim(app: JupyterFrontEnd, tracker: INotebookTracker): Promi
         });
 
         // tslint:disable:no-unused-expression
-        new VimCell(app, tracker);
-    });
+        return new VimCell(app, tracker);
+}
+
+function activateCellVim(app: JupyterFrontEnd, tracker: INotebookTracker, settingRegistry: ISettingRegistry): Promise<void> {
+    let hasEverBeenEnabled = false;
+
+    function updateSettings(settings: ISettingRegistry.ISettings) {
+        // TODO: This does not reset any cells that have been used with VIM
+        enabled = settings.get('enabled').composite === true;
+        if (enabled && !hasEverBeenEnabled) {
+            hasEverBeenEnabled = true;
+            setupPlugin(app, tracker);
+        }
+    }
+
+    settingRegistry.load(`${PLUGIN_NAME}:settings`).then(
+        (settings: ISettingRegistry.ISettings) => {
+            updateSettings(settings);
+            settings.changed.connect(updateSettings);
+        },
+        (err: Error) => {
+            console.error(
+                `Could not load settings, so did not active ${PLUGIN_NAME}: ${err}`
+            );
+        }
+    );
+
+
 
     return Promise.resolve();
 }
