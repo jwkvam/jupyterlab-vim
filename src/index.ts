@@ -18,11 +18,15 @@ import {
 
 import {
     ReadonlyJSONObject
-} from '@phosphor/coreutils';
+} from '@lumino/coreutils';
+
+import {
+    ReadonlyPartialJSONObject
+} from '@lumino/coreutils';
 
 import {
     ElementExt
-} from '@phosphor/domutils';
+} from '@lumino/domutils';
 
 import '../style/index.css';
 // Previously the vim keymap was loaded by JupyterLab, but now
