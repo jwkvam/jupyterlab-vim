@@ -17,12 +17,12 @@ import {
 } from '@jupyterlab/codemirror';
 
 import {
-    ReadonlyJSONObject
-} from '@phosphor/coreutils';
+    ReadonlyPartialJSONObject
+} from '@lumino/coreutils';
 
 import {
     ElementExt
-} from '@phosphor/domutils';
+} from '@lumino/domutils';
 
 import '../style/index.css';
 // Previously the vim keymap was loaded by JupyterLab, but now
@@ -118,7 +118,9 @@ class VimCell {
                     // var currentCell = ns.notebook.get_selected_cell();
                     // var currentCell = tracker.activeCell;
                     // var key = '';
-                    if (currentCell.model.type === 'markdown') {
+                    // `currentCell !== null should not be needed since `activeCell`
+                    // is already check against null (row 61). Added to avoid warning.
+                    if (currentCell !== null && currentCell.model.type === 'markdown') {
                         (currentCell as MarkdownCell).rendered = true;
                         // currentCell.execute();
                     }
@@ -193,7 +195,7 @@ function activateCellVim(app: JupyterFrontEnd, tracker: INotebookTracker): Promi
 
     Promise.all([app.restored]).then(([args]) => {
         const { commands, shell } = app;
-        function getCurrent(args: ReadonlyJSONObject): NotebookPanel | null {
+        function getCurrent(args: ReadonlyPartialJSONObject): NotebookPanel | null {
             const widget = tracker.currentWidget;
             const activate = args['activate'] !== false;
 
@@ -215,7 +217,7 @@ function activateCellVim(app: JupyterFrontEnd, tracker: INotebookTracker): Promi
 
                 if (current) {
                     const { context, content } = current;
-                    NotebookActions.runAndAdvance(content, context.session);
+                    NotebookActions.runAndAdvance(content, context.sessionContext);
                     current.content.mode = 'edit';
                 }
             },
@@ -228,7 +230,7 @@ function activateCellVim(app: JupyterFrontEnd, tracker: INotebookTracker): Promi
 
                 if (current) {
                     const { context, content } = current;
-                    NotebookActions.run(content, context.session);
+                    NotebookActions.run(content, context.sessionContext);
                     current.content.mode = 'edit';
                 }
             },
