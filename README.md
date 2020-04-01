@@ -26,13 +26,13 @@ Three editing modes now exist: Jupyter command, Vim command, and Vim insert.
 ### Install or upgrade
 
 ```bash
-jupyter labextension install jupyterlab_vim
+jupyter labextension install @axlair/jupyterlab_vim
 ```
 
 ### Uninstall
 
 ```bash
-jupyter labextension uninstall jupyterlab_vim
+jupyter labextension uninstall @axlair/jupyterlab_vim
 ```
 
 ## Key Bindings
