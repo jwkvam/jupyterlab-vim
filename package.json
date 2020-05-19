@@ -1,18 +1,18 @@
 {
-  "name": "jupyterlab_vim",
-  "version": "0.12.1",
+  "name": "@axlair/jupyterlab_vim",
+  "version": "0.12.2",
   "description": "Code cell vim bindings",
-  "author": "Jacques Kvam",
+  "author": "Axel Fahy",
   "license": "MIT",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
-  "homepage": "https://github.com/jwkvam/jupyterlab_vim",
+  "homepage": "https://github.com/axelfahy/jupyterlab-vim",
   "bugs": {
-    "url": "https://github.com/jwkvam/jupyterlab_vim/issues"
+    "url": "https://github.com/axelfahy/jupyterlab-vim/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jwkvam/jupyterlab_vim.git"
+    "url": "https://github.com/axelfahy/jupyterlab-vim.git"
   },
   "keywords": [
     "extension",
@@ -41,7 +41,8 @@
     "@lumino/commands": "^1.10.1",
     "@lumino/coreutils": "^1.4.2",
     "@lumino/domutils": "^1.1.7",
-    "@types/codemirror": "^0.0.87"
+    "@types/codemirror": "^0.0.87",
+    "react": "16.9.0"
   },
   "devDependencies": {
     "rimraf": "^2.6.2",

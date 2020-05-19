@@ -1,5 +1,9 @@
 # History
 
+## 0.12.2 / 2020-03-09
+
+  * Change package.json information
+
 ## 0.12.1 / 2020-03-06
 
   * `ctrl [` exits Vim insert mode
