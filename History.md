@@ -1,5 +1,12 @@
 # History
 
+## 0.12.3 / 2020-04-25
+
+  * `z c` hides selected code cell
+  * `z o` shows selected code cell
+  * `z m` hides all code cells
+  * `z r` shows all code cells
+
 ## 0.12.2 / 2020-03-09
 
   * Change package.json information

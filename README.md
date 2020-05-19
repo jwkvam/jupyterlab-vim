@@ -95,6 +95,10 @@ Shortcuts this extension introduces:
 | Ctrl-E  | Move Cells Down   |
 | Ctrl-Y  | Move Cells Up     |
 | Z, Z    | Center Cell       |
+| Z, C    | Hide Code Cell |
+| Z, O    | Show Code Cell |
+| Z, M    | Hide All Code Cells |
+| Z, R    | Show All Code Cells  |
 
 ## Contributing
 

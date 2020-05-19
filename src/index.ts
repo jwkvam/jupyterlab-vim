@@ -594,6 +594,26 @@ function activateCellVim(app: JupyterFrontEnd, tracker: INotebookTracker): Promi
             command: 'center-cell'
         });
         commands.addKeyBinding({
+            selector: '.jp-Notebook:focus',
+            keys: ['Z', 'C'],
+            command: 'notebook:hide-cell-code'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook:focus',
+            keys: ['Z', 'O'],
+            command: 'notebook:show-cell-code'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook:focus',
+            keys: ['Z', 'M'],
+            command: 'notebook:hide-all-cell-code'
+        });
+        commands.addKeyBinding({
+            selector: '.jp-Notebook:focus',
+            keys: ['Z', 'R'],
+            command: 'notebook:show-all-cell-code'
+        });
+        commands.addKeyBinding({
             selector: '.jp-Notebook.jp-mod-editMode',
             keys: ['Ctrl O', 'Z', 'Z'],
             command: 'center-cell'
