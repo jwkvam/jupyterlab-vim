@@ -1,0 +1,25 @@
+# This workflow will publish a package to npm when a pull request is merged.
+# The version of the package is automatically bump using 'phips28/gh-action-bump-version@master'.
+
+name: Node.js Package
+
+on:
+  push:
+    branches: master
+
+jobs:
+  publish-npm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Bump version
+        uses: 'phips28/gh-action-bump-version@master'
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+          registry-url: https://registry.npmjs.org/
+      - run: npm ci
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
