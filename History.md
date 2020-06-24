@@ -1,5 +1,8 @@
 # History
 
+## 0.11.1 / 2020-06-24
+  * Support JupyterLab 2.0.0+
+
 ## 0.11.0 / 2019-07-13
 
   * Support JupyterLab 1.0.0+
